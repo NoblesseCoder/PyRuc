@@ -3,7 +3,7 @@ import ply.lex as lex
 import re
 #	Ruby Token List
 tokens=('NAME','NUMBER','PLUS','MINUS','TIMES','DIVIDE','EQUALS','LPAREN',
-	'RPAREN','COMMENT','KEYWORDS','APPEND','TERMINATOR','STRING')
+	'RPAREN','COMMENT','KEYWORDS','APPEND','TERMINATOR','STRING','BUILTINMETHOD',)
 
 #	RegEx for simple tokens
 t_PLUS=r'\+'
@@ -26,6 +26,11 @@ def t_NUMBER(t):
     r'\d+' #docstring representing itd Regex
     t.value = int(t.value)    
     return t
+
+def t_BUILTINMETHOD(t):
+    r'puts|Array|Float|Integer|String|at_exit|autoload|binding|caller|catch|chop|chop!|chomp|chomp!|eval|exec|exit|exit!|fail|fork|format|gets|global_variables|gsub|gsub!|iterator?|lambda|load|local_variables|loop|open|p|print|printf|proc|putc|puts|raise|rand|readline|readlines|require|select|sleep|split|sprintf|srand|sub|sub!|syscall|system|test|trace_var|trap|untrace_var' #for built in functions
+    return t
+
 
 def t_STRING(t):
     r'\"[^"]*\"' #docstring representing functions Regex    
@@ -60,7 +65,7 @@ def get_tokens(data):
 		if not tok:		
 			break
 		tokens.append((tok.type,tok.value,tok.lineno,tok.lexpos))
-
+		print(tok)
 
 	return tokens		
 
@@ -68,4 +73,6 @@ def get_tokens(data):
 code_file=open('ruby_test.txt','r').read()
 #print(code)
 tks=get_tokens(code_file)
-print(tks)
+
+#for i in tks:
+#	print(i[0],"\t",i[1],"\t",i[2],"\t",i[3]) 
