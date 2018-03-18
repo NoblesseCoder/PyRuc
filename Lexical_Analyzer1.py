@@ -69,23 +69,18 @@ def get_tokens(data):
 	
 	d={"BEGIN":'k',"END":'k',"alias":'k',"and":'k',"begin":'k' , "break" :'k',"case":'k',"class":'k',"def":'k',"defined":'k',"do":'k',"else":'k',"elsif":'k',"end":'k',"ensure":'k',"false":'k',"for":'k',"if":'k',"in":'k',"module":'k',"next":'k',"nil":'k',"not":'k',"or":'k',"redo":'k',"rescue":'k',"retry":'k',"return":'k',"self":'k',"super":'k',"then":'k',"true":'k',"unless":'k',"until":'k',"when":'k',"yield":'k',"__FILE__":'k','__LINE__' :'k' ,"__ENCODING__" :'k'}
 	ele=0
-	block_no=1
+	block_no=0
 	temp={}
-	blocks=[]
+	
 	for j in tokens.values():
 		for k in j:
 			if((k[0]=='KEYWORDS') and (k[1] in ['BEGIN','begin','case','class','def','do','else','elsif','for','then','unless','until'])):
 				temp={}
 				d['block'+str(block_no)]=temp
-				if(ele!=0):
-					temp['par_0']=block_no
 				block_no+=1
-				blocks.append(temp)
 				ele+=1
 			if((k[0]=='KEYWORDS') and (k[1] in ['END','end','return','yield'])):
 				ele-=1
-				if(ele!=0):
-					temp=blocks[temp['par_0']]
 			if(k[0]=='NAME' and ele!=0):
 				temp[k[1]]=0
 			elif(k[0]=='NAME'):
