@@ -10,7 +10,8 @@ for i in 0..5
 		abs=12
 		break
   	end
+	k=12
 	puts"Value of local variable is #{i}"
 end
-
+y=2
 

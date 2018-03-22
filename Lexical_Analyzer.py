@@ -67,25 +67,35 @@ def get_tokens(data):
 			tokens[tok.lineno]=[]
 		tokens[tok.lineno].append((tok.type,tok.value,tok.lineno,tok.lexpos))
 	
-	d={"BEGIN":'k',"END":'k',"alias":'k',"and":'k',"begin":'k' , "break" :'k',"case":'k',"class":'k',"def":'k',"defined":'k',"do":'k',"else":'k',"elsif":'k',"end":'k',"ensure":'k',"false":'k',"for":'k',"if":'k',"in":'k',"module":'k',"next":'k',"nil":'k',"not":'k',"or":'k',"redo":'k',"rescue":'k',"retry":'k',"return":'k',"self":'k',"super":'k',"then":'k',"true":'k',"unless":'k',"until":'k',"when":'k',"yield":'k',"__FILE__":'k','__LINE__' :'k' ,"__ENCODING__" :'k'}
+	d={"BEGIN":'k',"END":'k',"alias":'k',"and":'k',"begin":'k' , "break" :'k',"case":'k',"class":'k',"def":'k',"defined":'k',"do":'k',"else":'k',"elsif":'k',"end":'k',"ensure":'k',"false":'k',"for":'k',"if":'k',"in":'k',"module":'k',"next":'k',"nil":'k',"not":'k',"or":'k',"redo":'k',"rescue":'k',"retry":'k',"return":'k',"self":'k',"super":'k',"then":'k',"true":'k',"unless":'k',"until":'k',"when":'k',"yield":'k',"__FILE__":'k','__LINE__' :'k' ,"__ENCODING__" :'k',-1:1}
+	#d={-1:1}	
 	ele=0
 	block_no=1
 	temp={}
+	parent=0
 	blocks=[]
 	for j in tokens.values():
 		for k in j:
 			if((k[0]=='KEYWORDS') and (k[1] in ['BEGIN','begin','case','class','def','do','else','elsif','for','then','unless','until'])):
-				temp={}
+				temp={-1:parent}
 				d['block'+str(block_no)]=temp
-				if(ele!=0):
-					temp['par_0']=block_no
+				#if(ele!=0):
+				#	temp['par_0']=block_no
 				block_no+=1
+				parent=block_no
 				blocks.append(temp)
 				ele+=1
 			if((k[0]=='KEYWORDS') and (k[1] in ['END','end','return','yield'])):
 				ele-=1
-				if(ele!=0):
-					temp=blocks[temp['par_0']]
+				#if(ele!=0):
+				#	temp=parent
+				parent=temp[-1]-1
+				#print(parent)
+				if(parent<=0):
+					temp=d
+				else:
+					temp=d['block'+str(parent)]
+				#print(temp)
 			if(k[0]=='NAME' and ele!=0):
 				temp[k[1]]=0
 			elif(k[0]=='NAME'):
@@ -99,5 +109,5 @@ def get_tokens(data):
 code_file=open('ruby_test.rb','r').read()
 print("\nSymbol Table\n")
 tks,symbol_table=get_tokens(code_file)
-print("\nTokens\n")
-print(tks)
+#print("\nTokens\n")
+#print(tks)
