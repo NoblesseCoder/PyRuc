@@ -1,5 +1,6 @@
 # Python program to do Lexical Analysis of Ruby code.
-# We are not taking into consideration strings in single quotes here , gives an error with single quotes
+# Added data type of the varaible into the symbol table
+
 import ply.lex as lex
 import re
 #	Ruby Token List
@@ -85,7 +86,7 @@ def get_tokens(data):
 		tokens[required_key] = list1
 
 	#add datatype to the variables
-	d = {}
+	
 	scope_no = 0
 	for j in tokens.values():
 		length = len(j)
@@ -94,12 +95,12 @@ def get_tokens(data):
 				scope_no = scope_no + 1	
 			if((j[k][0]=='KEYWORDS') and (j[k][1] in ['END','end','return','yield'])):
 				scope_no = scope_no - 1
-			if(j[k][0] == 'BUILTINMETHOD'):
+			elif(j[k][0] == 'BUILTINMETHOD'):
 				list1 = []
-				list1.append('predefined') #represents the type
+				list1.append('predefined func') #represents the type
 				 #represents the scope , where 0 represents global varaibles
 				d[j[k][1]] = list1
-			if(j[k][0] == 'NAME'):
+			elif(j[k][0] == 'NAME'):
 				list1 = []
 				l = k+1	
 				m = k+2			
@@ -114,7 +115,7 @@ def get_tokens(data):
 				if(j[k][1] not in d.keys()):
 					d[j[k][1]] = list1
 
-			if(j[k][0] == 'NAME' and j[k+1][0] == 'EQUALS' and j[k+2][0]== 'STRING'):
+			elif(j[k][0] == 'NAME' and j[k+1][0] == 'EQUALS' and j[k+2][0]== 'STRING'):
 				list1 = []
 				l= k+1
 				m = k+2
@@ -131,10 +132,10 @@ def get_tokens(data):
 	return tokens,d		
 
 
-code_file=open('ip.rb','r').read()
-print("\nSymbol Table\n")
+code_file=open('ruby_test.rb','r').read()
+print("\nTokens\n")
 tks,symbol_table=get_tokens(code_file)
-print("\nSymbol Table with Scope no and data type of varaibles and predefined functions\n")
+print("\nSymbol Table with Scope no and data type of varaibles and predefined functions and keywords(k)\n")
 for k, v in symbol_table.items():
 	print(k, v)
 
