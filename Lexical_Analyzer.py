@@ -2,43 +2,112 @@
 import ply.lex as lex
 import re
 #	Ruby Token List
-tokens=('NAME','NUMBER','PLUS','MINUS','TIMES','DIVIDE','EQUALS','LPAREN',
-	'RPAREN','COMMENT','KEYWORDS','APPEND','STRING','BUILTINMETHOD','RANGE','GREAT','INDENT_T','INDENT_S')
+tokens=('while','number','plus','minus','times','divide','equals','lparen','logic','logicnot',
+	'rparen','comment','keywords','append','string','builtinmethod','range','great','rsquare','lsquare','newline',
+'lflower','rflower','less','begin','break','else','end','for','if','true','false','return','then_tok','elsif','in','do','quotes','dollar','commas','bar','name')
 
 #	RegEx for simple tokens
-t_PLUS=r'\+'
-t_MINUS=r'-'
-t_TIMES=r'\*'
-t_DIVIDE=r'/'
-t_LPAREN=r'\('
-t_RPAREN=r'\)'
-t_EQUALS=r'='
-t_APPEND=r'<<'
-t_RANGE=r'\.\.'
-t_ignore=''
-t_KEYWORDS=r'BEGIN|END|alias|and|begin|break|case|class|def|defined|do|else|elsif|end|ensure|false|for|if|in|module|next|nil|not|or|redo|rescue|retry|return|self|super|then|true|unless|until|when|yield|__FILE__|__LINE__|__ENCODING__' 
-t_NAME= r'[a-zA-Z_][a-zA-Z0-9_]*'			
-t_GREAT=r'\>'
-t_INDENT_T=r'\t'
-t_INDENT_S=r'[ ]'
+
+t_plus=r'\+'
+t_minus=r'-'
+t_times=r'\*'
+t_divide=r'/'
+t_lparen=r'\('
+t_rparen=r'\)'
+t_equals=r'='
+t_append=r'<<'
+t_range=r'\.\.'
+t_ignore='[ \t]'
+t_less=r'\<'
+#t_if=r'if'
+#t_range=r'\.\.\.'
+
+t_keywords=r'alias|case|class|def|defined|ensuremodule|next|nil|redo|rescue|retry|self|super|true|unless|until|when|yield|__FILE__|__LINE__|__ENCODING__' 	
+t_lsquare=r'\['
+t_rsquare=r'\]'
+t_lflower=r'\{'
+t_rflower=r'\}'
+
+t_quotes=r'\"'
+t_dollar=r'\$'
+t_commas=r'\,'
+t_bar=r'\|'		
+t_great=r'\>'
+t_name= r'[a-zA-Z_][a-zA-Z0-9_]*'
+
+#def t_indent_t(t):
+#	r'\t'
+#	t.lexer.skip(1)
+#def t_indent_s(t):
+#	r'[ ]'
+#	t.lexer.skip(1)
+
 
 #	RegEx with action code
-def t_NUMBER(t):
+def t_elsif(t):
+	r'elsif'
+	return t
+def t_while(t):
+	r'while'
+	return t
+def t_begin(t):
+	r'begin'
+	return t
+def t_break(t):
+	r'break'
+	return t
+def t_else(t):
+	r'else'
+	return t
+def t_end(t):
+	r'end'
+	return t
+def t_for(t):
+	r'for'
+	return t
+def t_if(t):
+	r'if'
+	return t
+def t_true(t):
+	r'true'
+	return t
+def t_false(t):
+	r'false'
+	return t
+def t_return(t):
+	r'return'
+	return t
+def t_then_tok(t):
+	r'then'
+	return t
+def t_in(t):
+	r'in'
+	return t
+def t_do(t):
+	r'do'
+	return t
+def t_logic(t):
+	r'or|and'
+	return t
+def t_logicnot(t):
+	r'not'
+	return t
+def t_number(t):
     r'\d+' #docstring representing itd Regex
     t.value = int(t.value)    
     return t
 
-def t_BUILTINMETHOD(t):
+def t_builtinmethod(t):
     r'Array|Float|Integer|String|at_exit|autoload|binding|caller|catch|chop|chop!|chomp|chomp!|eval|exec|exit|exit!|fail|fork|format|gets|global_variables|gsub|gsub!|iterator?|lambda|load|local_variables|loop|open|print|printf|proc|putc|puts|raise|rand|readline|readlines|require|select|sleep|split|sprintf|srand|sub|sub!|syscall|system|test|trace_var|trap|untrace_var' #for built in functions
     return t
 
 
-def t_STRING(t):
+def t_string(t):
     r'\"[^"]*\"' #docstring representing functions Regex    
     return t
 
 #single line comments
-def t_COMMENT(t):
+def t_comment(t):
 	r'\#[^\n]*'
 	pass
 
@@ -46,6 +115,7 @@ def t_COMMENT(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+    return t
 
 # 	Error handler
 def t_error(t):
@@ -56,7 +126,7 @@ def t_error(t):
 #	Building the lexer
 lexer=lex.lex()
 def get_tokens(data):
-	'''Returns list of tokens including metadata'''
+	#Returns list of tokens including metadata
 	lexer.input(data) # using lexer
 	tokens={}
 	while(True):
@@ -76,7 +146,7 @@ def get_tokens(data):
 	blocks=[]
 	for j in tokens.values():
 		for k in j:
-			if((k[0]=='KEYWORDS') and (k[1] in ['BEGIN','begin','case','class','def','do','else','elsif','for','then','unless','until'])):
+			if((k[0] in ['begin','case','class','def','do','else','elsif','for','then','unless','until'])):
 				temp={-1:parent}
 				d['block'+str(block_no)]=temp
 				#if(ele!=0):
@@ -85,11 +155,14 @@ def get_tokens(data):
 				parent=block_no
 				blocks.append(temp)
 				ele+=1
-			if((k[0]=='KEYWORDS') and (k[1] in ['END','end','return','yield'])):
+			if((k[0] in ['end','return','yield'])):
 				ele-=1
 				#if(ele!=0):
 				#	temp=parent
-				parent=temp[-1]-1
+				try:
+					parent=temp[-1]-1
+				except: 
+					pass
 				#print(parent)
 				if(parent<=0):
 					temp=d
@@ -102,12 +175,14 @@ def get_tokens(data):
 				d[k[1]]=0
 
 
-	print(d)
+	#print(d)
 	return tokens,d		
 
 
 code_file=open('ruby_test.rb','r').read()
-print("\nSymbol Table\n")
+#print("\nSymbol Table\n")
 tks,symbol_table=get_tokens(code_file)
 #print("\nTokens\n")
 #print(tks)
+#sprint("Symbol Table\n")
+

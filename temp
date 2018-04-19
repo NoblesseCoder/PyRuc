@@ -1,0 +1,91 @@
+
+def p_PROGRAM(p): 
+	'PROGRAM : COMPSTMT'
+
+def p_T(p):
+	'''T 	: newline
+	'''
+
+def p_COMPSTMT(p): 
+	'''COMPSTMT : STMT T EXPR T 
+	| T EXPR
+	'''
+
+
+def p_STMT(p): 
+	'''STMT : begin COMPSTMT
+	| EXPR
+	'''
+	
+def p_EXPR(p):
+	'''EXPR : MLHS equals MRHS
+	| EXPR logic EXPR
+	| logicnot EXPR
+	| PRIMARY	
+	| ARG
+	'''
+def p_PRIMARY(t):
+	'''PRIMARY : lparen COMPSTMT rparen
+	| if EXPR then_tok STMT end
+	| while EXPR do COMPSTMT end
+	| name
+	'''
+def p_ARG(p):
+	'''ARG : LHS equals ARG
+	| LHS OP_ASGN ARG
+	| ARG plus ARG
+	| ARG minus ARG 
+	| ARG times ARG
+	| ARG divide ARG
+	| ARG times times ARG
+	| plus ARG
+	| minus ARG
+	| ARG bar ARG
+	| ARG less equals great ARG
+	| ARG great ARG
+	| ARG great equals ARG
+	| ARG less ARG
+	| ARG less equals ARG
+	| ARG equals equals ARG
+	| ARG equals equals equals ARG
+	| ARG less less ARG
+	| ARG great great ARG
+	| ARG bar bar ARG
+	| LITERAL
+	'''
+def p_MLHS(p):
+	'''MLHS : MLHS_ITEM commas lsquare MLHS_ITEM lparen commas MLHS_ITEM rparen times rsquare lsquare times lsquare LHS rsquare rsquare
+	'''
+
+def p_MRHS(p):
+	'''MRHS : ARGS lsquare commas times ARG rsquare
+	| times ARG
+	'''
+
+def p_MLHS_ITEM(p):
+	'''MLHS_ITEM : LHS
+	| lparen MLHS rparen
+	'''
+def p_LHS(p):
+	'''LHS : name
+	| PRIMARY ARGS
+	'''
+def p_ARGS(p):
+	'''ARGS : lparen commas ARG rparen times
+	'''
+
+def p_LITERAL(p):
+	'''LITERAL : number
+	| string
+	'''
+
+def p_OP_ASGN(p):
+	'''OP_ASGN : plus equals
+	| minus equals
+	| times equals
+	| divide equals
+	| times times equals
+	| less less equals
+	| great great equals
+	'''
+

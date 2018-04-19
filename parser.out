@@ -1,0 +1,1325 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    lparen
+    logic
+    logicnot
+    rparen
+    comment
+    keywords
+    append
+    string
+    builtinmethod
+    range
+    rsquare
+    lsquare
+    lflower
+    rflower
+    begin
+    break
+    for
+    true
+    false
+    return
+    in
+    quotes
+    dollar
+    commas
+    bar
+
+Grammar
+
+Rule 0     S' -> BLOCKSTMT
+Rule 1     BLOCKSTMT -> STMT newline BLOCKSTMT
+Rule 2     BLOCKSTMT -> STMT BLOCKSTMT
+Rule 3     BLOCKSTMT -> STMT newline
+Rule 4     BLOCKSTMT -> STMT
+Rule 5     STMT -> ASSGN
+Rule 6     STMT -> SELECT
+Rule 7     STMT -> ITER
+Rule 8     SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+Rule 9     ELSIF -> elsif EXPR then_tok BLOCKSTMT
+Rule 10    ELSIF -> <empty>
+Rule 11    ELSE -> else BLOCKSTMT
+Rule 12    ELSE -> <empty>
+Rule 13    ASSGN -> LHS equals EXPR
+Rule 14    LHS -> name
+Rule 15    EXPR -> EXPR plus EXPR
+Rule 16    EXPR -> EXPR minus EXPR
+Rule 17    EXPR -> EXPR times EXPR
+Rule 18    EXPR -> EXPR divide EXPR
+Rule 19    EXPR -> EXPR less EXPR
+Rule 20    EXPR -> EXPR equals equals EXPR
+Rule 21    EXPR -> EXPR great EXPR
+Rule 22    EXPR -> EXPR great equals EXPR
+Rule 23    EXPR -> EXPR less equals EXPR
+Rule 24    EXPR -> name
+Rule 25    EXPR -> number
+Rule 26    ITER -> while EXPR do BLOCKSTMT end
+
+Terminals, with rules where they appear
+
+append               : 
+bar                  : 
+begin                : 
+break                : 
+builtinmethod        : 
+commas               : 
+comment              : 
+divide               : 18
+do                   : 26
+dollar               : 
+else                 : 11
+elsif                : 9
+end                  : 8 26
+equals               : 13 20 20 22 23
+error                : 
+false                : 
+for                  : 
+great                : 21 22
+if                   : 8
+in                   : 
+keywords             : 
+less                 : 19 23
+lflower              : 
+logic                : 
+logicnot             : 
+lparen               : 
+lsquare              : 
+minus                : 16
+name                 : 14 24
+newline              : 1 3
+number               : 25
+plus                 : 15
+quotes               : 
+range                : 
+return               : 
+rflower              : 
+rparen               : 
+rsquare              : 
+string               : 
+then_tok             : 8 9
+times                : 17
+true                 : 
+while                : 26
+
+Nonterminals, with rules where they appear
+
+ASSGN                : 5
+BLOCKSTMT            : 1 2 8 9 11 26 0
+ELSE                 : 8
+ELSIF                : 8
+EXPR                 : 8 9 13 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 26
+ITER                 : 7
+LHS                  : 13
+SELECT               : 6
+STMT                 : 1 2 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . BLOCKSTMT
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    BLOCKSTMT                      shift and go to state 1
+    STMT                           shift and go to state 2
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 1
+
+    (0) S' -> BLOCKSTMT .
+
+
+
+state 2
+
+    (1) BLOCKSTMT -> STMT . newline BLOCKSTMT
+    (2) BLOCKSTMT -> STMT . BLOCKSTMT
+    (3) BLOCKSTMT -> STMT . newline
+    (4) BLOCKSTMT -> STMT .
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    newline         shift and go to state 10
+    $end            reduce using rule 4 (BLOCKSTMT -> STMT .)
+    elsif           reduce using rule 4 (BLOCKSTMT -> STMT .)
+    else            reduce using rule 4 (BLOCKSTMT -> STMT .)
+    end             reduce using rule 4 (BLOCKSTMT -> STMT .)
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    STMT                           shift and go to state 2
+    BLOCKSTMT                      shift and go to state 11
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 3
+
+    (5) STMT -> ASSGN .
+
+    newline         reduce using rule 5 (STMT -> ASSGN .)
+    if              reduce using rule 5 (STMT -> ASSGN .)
+    while           reduce using rule 5 (STMT -> ASSGN .)
+    name            reduce using rule 5 (STMT -> ASSGN .)
+    $end            reduce using rule 5 (STMT -> ASSGN .)
+    elsif           reduce using rule 5 (STMT -> ASSGN .)
+    else            reduce using rule 5 (STMT -> ASSGN .)
+    end             reduce using rule 5 (STMT -> ASSGN .)
+
+
+state 4
+
+    (6) STMT -> SELECT .
+
+    newline         reduce using rule 6 (STMT -> SELECT .)
+    if              reduce using rule 6 (STMT -> SELECT .)
+    while           reduce using rule 6 (STMT -> SELECT .)
+    name            reduce using rule 6 (STMT -> SELECT .)
+    $end            reduce using rule 6 (STMT -> SELECT .)
+    elsif           reduce using rule 6 (STMT -> SELECT .)
+    else            reduce using rule 6 (STMT -> SELECT .)
+    end             reduce using rule 6 (STMT -> SELECT .)
+
+
+state 5
+
+    (7) STMT -> ITER .
+
+    newline         reduce using rule 7 (STMT -> ITER .)
+    if              reduce using rule 7 (STMT -> ITER .)
+    while           reduce using rule 7 (STMT -> ITER .)
+    name            reduce using rule 7 (STMT -> ITER .)
+    $end            reduce using rule 7 (STMT -> ITER .)
+    elsif           reduce using rule 7 (STMT -> ITER .)
+    else            reduce using rule 7 (STMT -> ITER .)
+    end             reduce using rule 7 (STMT -> ITER .)
+
+
+state 6
+
+    (13) ASSGN -> LHS . equals EXPR
+
+    equals          shift and go to state 12
+
+
+state 7
+
+    (8) SELECT -> if . EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 13
+
+state 8
+
+    (26) ITER -> while . EXPR do BLOCKSTMT end
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 16
+
+state 9
+
+    (14) LHS -> name .
+
+    equals          reduce using rule 14 (LHS -> name .)
+
+
+state 10
+
+    (1) BLOCKSTMT -> STMT newline . BLOCKSTMT
+    (3) BLOCKSTMT -> STMT newline .
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    $end            reduce using rule 3 (BLOCKSTMT -> STMT newline .)
+    elsif           reduce using rule 3 (BLOCKSTMT -> STMT newline .)
+    else            reduce using rule 3 (BLOCKSTMT -> STMT newline .)
+    end             reduce using rule 3 (BLOCKSTMT -> STMT newline .)
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    STMT                           shift and go to state 2
+    BLOCKSTMT                      shift and go to state 17
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 11
+
+    (2) BLOCKSTMT -> STMT BLOCKSTMT .
+
+    $end            reduce using rule 2 (BLOCKSTMT -> STMT BLOCKSTMT .)
+    elsif           reduce using rule 2 (BLOCKSTMT -> STMT BLOCKSTMT .)
+    else            reduce using rule 2 (BLOCKSTMT -> STMT BLOCKSTMT .)
+    end             reduce using rule 2 (BLOCKSTMT -> STMT BLOCKSTMT .)
+
+
+state 12
+
+    (13) ASSGN -> LHS equals . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 18
+
+state 13
+
+    (8) SELECT -> if EXPR . then_tok BLOCKSTMT ELSIF ELSE end
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    then_tok        shift and go to state 19
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+
+state 14
+
+    (24) EXPR -> name .
+
+    then_tok        reduce using rule 24 (EXPR -> name .)
+    plus            reduce using rule 24 (EXPR -> name .)
+    minus           reduce using rule 24 (EXPR -> name .)
+    times           reduce using rule 24 (EXPR -> name .)
+    divide          reduce using rule 24 (EXPR -> name .)
+    less            reduce using rule 24 (EXPR -> name .)
+    equals          reduce using rule 24 (EXPR -> name .)
+    great           reduce using rule 24 (EXPR -> name .)
+    do              reduce using rule 24 (EXPR -> name .)
+    newline         reduce using rule 24 (EXPR -> name .)
+    if              reduce using rule 24 (EXPR -> name .)
+    while           reduce using rule 24 (EXPR -> name .)
+    name            reduce using rule 24 (EXPR -> name .)
+    $end            reduce using rule 24 (EXPR -> name .)
+    elsif           reduce using rule 24 (EXPR -> name .)
+    else            reduce using rule 24 (EXPR -> name .)
+    end             reduce using rule 24 (EXPR -> name .)
+
+
+state 15
+
+    (25) EXPR -> number .
+
+    then_tok        reduce using rule 25 (EXPR -> number .)
+    plus            reduce using rule 25 (EXPR -> number .)
+    minus           reduce using rule 25 (EXPR -> number .)
+    times           reduce using rule 25 (EXPR -> number .)
+    divide          reduce using rule 25 (EXPR -> number .)
+    less            reduce using rule 25 (EXPR -> number .)
+    equals          reduce using rule 25 (EXPR -> number .)
+    great           reduce using rule 25 (EXPR -> number .)
+    do              reduce using rule 25 (EXPR -> number .)
+    newline         reduce using rule 25 (EXPR -> number .)
+    if              reduce using rule 25 (EXPR -> number .)
+    while           reduce using rule 25 (EXPR -> number .)
+    name            reduce using rule 25 (EXPR -> number .)
+    $end            reduce using rule 25 (EXPR -> number .)
+    elsif           reduce using rule 25 (EXPR -> number .)
+    else            reduce using rule 25 (EXPR -> number .)
+    end             reduce using rule 25 (EXPR -> number .)
+
+
+state 16
+
+    (26) ITER -> while EXPR . do BLOCKSTMT end
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    do              shift and go to state 27
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+
+state 17
+
+    (1) BLOCKSTMT -> STMT newline BLOCKSTMT .
+
+    $end            reduce using rule 1 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
+    elsif           reduce using rule 1 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
+    else            reduce using rule 1 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
+    end             reduce using rule 1 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
+
+
+state 18
+
+    (13) ASSGN -> LHS equals EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    newline         reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    if              reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    while           reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    name            reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    $end            reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    elsif           reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    else            reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    end             reduce using rule 13 (ASSGN -> LHS equals EXPR .)
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+
+state 19
+
+    (8) SELECT -> if EXPR then_tok . BLOCKSTMT ELSIF ELSE end
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    BLOCKSTMT                      shift and go to state 28
+    STMT                           shift and go to state 2
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 20
+
+    (15) EXPR -> EXPR plus . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 29
+
+state 21
+
+    (16) EXPR -> EXPR minus . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 30
+
+state 22
+
+    (17) EXPR -> EXPR times . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 31
+
+state 23
+
+    (18) EXPR -> EXPR divide . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 32
+
+state 24
+
+    (19) EXPR -> EXPR less . EXPR
+    (23) EXPR -> EXPR less . equals EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    equals          shift and go to state 34
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 33
+
+state 25
+
+    (20) EXPR -> EXPR equals . equals EXPR
+
+    equals          shift and go to state 35
+
+
+state 26
+
+    (21) EXPR -> EXPR great . EXPR
+    (22) EXPR -> EXPR great . equals EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    equals          shift and go to state 37
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 36
+
+state 27
+
+    (26) ITER -> while EXPR do . BLOCKSTMT end
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    BLOCKSTMT                      shift and go to state 38
+    STMT                           shift and go to state 2
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 28
+
+    (8) SELECT -> if EXPR then_tok BLOCKSTMT . ELSIF ELSE end
+    (9) ELSIF -> . elsif EXPR then_tok BLOCKSTMT
+    (10) ELSIF -> .
+
+    elsif           shift and go to state 40
+    else            reduce using rule 10 (ELSIF -> .)
+    end             reduce using rule 10 (ELSIF -> .)
+
+    ELSIF                          shift and go to state 39
+
+state 29
+
+    (15) EXPR -> EXPR plus EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    then_tok        reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    plus            reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    minus           reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    less            reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    equals          reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    great           reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    do              reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    newline         reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    if              reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    while           reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    name            reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    $end            reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    elsif           reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    else            reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    end             reduce using rule 15 (EXPR -> EXPR plus EXPR .)
+    times           shift and go to state 22
+    divide          shift and go to state 23
+
+  ! times           [ reduce using rule 15 (EXPR -> EXPR plus EXPR .) ]
+  ! divide          [ reduce using rule 15 (EXPR -> EXPR plus EXPR .) ]
+  ! plus            [ shift and go to state 20 ]
+  ! minus           [ shift and go to state 21 ]
+  ! less            [ shift and go to state 24 ]
+  ! equals          [ shift and go to state 25 ]
+  ! great           [ shift and go to state 26 ]
+
+
+state 30
+
+    (16) EXPR -> EXPR minus EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    then_tok        reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    plus            reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    minus           reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    less            reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    equals          reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    great           reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    do              reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    newline         reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    if              reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    while           reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    name            reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    $end            reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    elsif           reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    else            reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    end             reduce using rule 16 (EXPR -> EXPR minus EXPR .)
+    times           shift and go to state 22
+    divide          shift and go to state 23
+
+  ! times           [ reduce using rule 16 (EXPR -> EXPR minus EXPR .) ]
+  ! divide          [ reduce using rule 16 (EXPR -> EXPR minus EXPR .) ]
+  ! plus            [ shift and go to state 20 ]
+  ! minus           [ shift and go to state 21 ]
+  ! less            [ shift and go to state 24 ]
+  ! equals          [ shift and go to state 25 ]
+  ! great           [ shift and go to state 26 ]
+
+
+state 31
+
+    (17) EXPR -> EXPR times EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    then_tok        reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    plus            reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    minus           reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    times           reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    divide          reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    less            reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    equals          reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    great           reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    do              reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    newline         reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    if              reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    while           reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    name            reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    $end            reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    elsif           reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    else            reduce using rule 17 (EXPR -> EXPR times EXPR .)
+    end             reduce using rule 17 (EXPR -> EXPR times EXPR .)
+
+  ! plus            [ shift and go to state 20 ]
+  ! minus           [ shift and go to state 21 ]
+  ! times           [ shift and go to state 22 ]
+  ! divide          [ shift and go to state 23 ]
+  ! less            [ shift and go to state 24 ]
+  ! equals          [ shift and go to state 25 ]
+  ! great           [ shift and go to state 26 ]
+
+
+state 32
+
+    (18) EXPR -> EXPR divide EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    then_tok        reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    plus            reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    minus           reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    times           reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    divide          reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    less            reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    equals          reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    great           reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    do              reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    newline         reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    if              reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    while           reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    name            reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    $end            reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    elsif           reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    else            reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+    end             reduce using rule 18 (EXPR -> EXPR divide EXPR .)
+
+  ! plus            [ shift and go to state 20 ]
+  ! minus           [ shift and go to state 21 ]
+  ! times           [ shift and go to state 22 ]
+  ! divide          [ shift and go to state 23 ]
+  ! less            [ shift and go to state 24 ]
+  ! equals          [ shift and go to state 25 ]
+  ! great           [ shift and go to state 26 ]
+
+
+state 33
+
+    (19) EXPR -> EXPR less EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for times resolved as shift
+  ! shift/reduce conflict for divide resolved as shift
+  ! shift/reduce conflict for less resolved as shift
+  ! shift/reduce conflict for equals resolved as shift
+  ! shift/reduce conflict for great resolved as shift
+    then_tok        reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    do              reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    newline         reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    if              reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    while           reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    name            reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    $end            reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    elsif           reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    else            reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    end             reduce using rule 19 (EXPR -> EXPR less EXPR .)
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+  ! plus            [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+  ! minus           [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+  ! times           [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+  ! divide          [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+  ! less            [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+  ! equals          [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+  ! great           [ reduce using rule 19 (EXPR -> EXPR less EXPR .) ]
+
+
+state 34
+
+    (23) EXPR -> EXPR less equals . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 41
+
+state 35
+
+    (20) EXPR -> EXPR equals equals . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 42
+
+state 36
+
+    (21) EXPR -> EXPR great EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for times resolved as shift
+  ! shift/reduce conflict for divide resolved as shift
+  ! shift/reduce conflict for less resolved as shift
+  ! shift/reduce conflict for equals resolved as shift
+  ! shift/reduce conflict for great resolved as shift
+    then_tok        reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    do              reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    newline         reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    if              reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    while           reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    name            reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    $end            reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    elsif           reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    else            reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    end             reduce using rule 21 (EXPR -> EXPR great EXPR .)
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+  ! plus            [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+  ! minus           [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+  ! times           [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+  ! divide          [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+  ! less            [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+  ! equals          [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+  ! great           [ reduce using rule 21 (EXPR -> EXPR great EXPR .) ]
+
+
+state 37
+
+    (22) EXPR -> EXPR great equals . EXPR
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 43
+
+state 38
+
+    (26) ITER -> while EXPR do BLOCKSTMT . end
+
+    end             shift and go to state 44
+
+
+state 39
+
+    (8) SELECT -> if EXPR then_tok BLOCKSTMT ELSIF . ELSE end
+    (11) ELSE -> . else BLOCKSTMT
+    (12) ELSE -> .
+
+    else            shift and go to state 46
+    end             reduce using rule 12 (ELSE -> .)
+
+    ELSE                           shift and go to state 45
+
+state 40
+
+    (9) ELSIF -> elsif . EXPR then_tok BLOCKSTMT
+    (15) EXPR -> . EXPR plus EXPR
+    (16) EXPR -> . EXPR minus EXPR
+    (17) EXPR -> . EXPR times EXPR
+    (18) EXPR -> . EXPR divide EXPR
+    (19) EXPR -> . EXPR less EXPR
+    (20) EXPR -> . EXPR equals equals EXPR
+    (21) EXPR -> . EXPR great EXPR
+    (22) EXPR -> . EXPR great equals EXPR
+    (23) EXPR -> . EXPR less equals EXPR
+    (24) EXPR -> . name
+    (25) EXPR -> . number
+
+    name            shift and go to state 14
+    number          shift and go to state 15
+
+    EXPR                           shift and go to state 47
+
+state 41
+
+    (23) EXPR -> EXPR less equals EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for times resolved as shift
+  ! shift/reduce conflict for divide resolved as shift
+  ! shift/reduce conflict for less resolved as shift
+  ! shift/reduce conflict for equals resolved as shift
+  ! shift/reduce conflict for great resolved as shift
+    then_tok        reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    do              reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    newline         reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    if              reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    while           reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    name            reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    $end            reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    elsif           reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    else            reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    end             reduce using rule 23 (EXPR -> EXPR less equals EXPR .)
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+  ! plus            [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+  ! minus           [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+  ! times           [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+  ! divide          [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+  ! less            [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+  ! equals          [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+  ! great           [ reduce using rule 23 (EXPR -> EXPR less equals EXPR .) ]
+
+
+state 42
+
+    (20) EXPR -> EXPR equals equals EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for times resolved as shift
+  ! shift/reduce conflict for divide resolved as shift
+  ! shift/reduce conflict for less resolved as shift
+  ! shift/reduce conflict for equals resolved as shift
+  ! shift/reduce conflict for great resolved as shift
+    then_tok        reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    do              reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    newline         reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    if              reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    while           reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    name            reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    $end            reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    elsif           reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    else            reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    end             reduce using rule 20 (EXPR -> EXPR equals equals EXPR .)
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+  ! plus            [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+  ! minus           [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+  ! times           [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+  ! divide          [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+  ! less            [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+  ! equals          [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+  ! great           [ reduce using rule 20 (EXPR -> EXPR equals equals EXPR .) ]
+
+
+state 43
+
+    (22) EXPR -> EXPR great equals EXPR .
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+  ! shift/reduce conflict for plus resolved as shift
+  ! shift/reduce conflict for minus resolved as shift
+  ! shift/reduce conflict for times resolved as shift
+  ! shift/reduce conflict for divide resolved as shift
+  ! shift/reduce conflict for less resolved as shift
+  ! shift/reduce conflict for equals resolved as shift
+  ! shift/reduce conflict for great resolved as shift
+    then_tok        reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    do              reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    newline         reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    if              reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    while           reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    name            reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    $end            reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    elsif           reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    else            reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    end             reduce using rule 22 (EXPR -> EXPR great equals EXPR .)
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+  ! plus            [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+  ! minus           [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+  ! times           [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+  ! divide          [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+  ! less            [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+  ! equals          [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+  ! great           [ reduce using rule 22 (EXPR -> EXPR great equals EXPR .) ]
+
+
+state 44
+
+    (26) ITER -> while EXPR do BLOCKSTMT end .
+
+    newline         reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    if              reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    while           reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    name            reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    $end            reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    elsif           reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    else            reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+    end             reduce using rule 26 (ITER -> while EXPR do BLOCKSTMT end .)
+
+
+state 45
+
+    (8) SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE . end
+
+    end             shift and go to state 48
+
+
+state 46
+
+    (11) ELSE -> else . BLOCKSTMT
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    BLOCKSTMT                      shift and go to state 49
+    STMT                           shift and go to state 2
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 47
+
+    (9) ELSIF -> elsif EXPR . then_tok BLOCKSTMT
+    (15) EXPR -> EXPR . plus EXPR
+    (16) EXPR -> EXPR . minus EXPR
+    (17) EXPR -> EXPR . times EXPR
+    (18) EXPR -> EXPR . divide EXPR
+    (19) EXPR -> EXPR . less EXPR
+    (20) EXPR -> EXPR . equals equals EXPR
+    (21) EXPR -> EXPR . great EXPR
+    (22) EXPR -> EXPR . great equals EXPR
+    (23) EXPR -> EXPR . less equals EXPR
+
+    then_tok        shift and go to state 50
+    plus            shift and go to state 20
+    minus           shift and go to state 21
+    times           shift and go to state 22
+    divide          shift and go to state 23
+    less            shift and go to state 24
+    equals          shift and go to state 25
+    great           shift and go to state 26
+
+
+state 48
+
+    (8) SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .
+
+    newline         reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    if              reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    while           reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    name            reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    $end            reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    elsif           reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    else            reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+    end             reduce using rule 8 (SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end .)
+
+
+state 49
+
+    (11) ELSE -> else BLOCKSTMT .
+
+    end             reduce using rule 11 (ELSE -> else BLOCKSTMT .)
+
+
+state 50
+
+    (9) ELSIF -> elsif EXPR then_tok . BLOCKSTMT
+    (1) BLOCKSTMT -> . STMT newline BLOCKSTMT
+    (2) BLOCKSTMT -> . STMT BLOCKSTMT
+    (3) BLOCKSTMT -> . STMT newline
+    (4) BLOCKSTMT -> . STMT
+    (5) STMT -> . ASSGN
+    (6) STMT -> . SELECT
+    (7) STMT -> . ITER
+    (13) ASSGN -> . LHS equals EXPR
+    (8) SELECT -> . if EXPR then_tok BLOCKSTMT ELSIF ELSE end
+    (26) ITER -> . while EXPR do BLOCKSTMT end
+    (14) LHS -> . name
+
+    if              shift and go to state 7
+    while           shift and go to state 8
+    name            shift and go to state 9
+
+    BLOCKSTMT                      shift and go to state 51
+    STMT                           shift and go to state 2
+    ASSGN                          shift and go to state 3
+    SELECT                         shift and go to state 4
+    ITER                           shift and go to state 5
+    LHS                            shift and go to state 6
+
+state 51
+
+    (9) ELSIF -> elsif EXPR then_tok BLOCKSTMT .
+
+    else            reduce using rule 9 (ELSIF -> elsif EXPR then_tok BLOCKSTMT .)
+    end             reduce using rule 9 (ELSIF -> elsif EXPR then_tok BLOCKSTMT .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for plus in state 33 resolved as shift
+WARNING: shift/reduce conflict for minus in state 33 resolved as shift
+WARNING: shift/reduce conflict for times in state 33 resolved as shift
+WARNING: shift/reduce conflict for divide in state 33 resolved as shift
+WARNING: shift/reduce conflict for less in state 33 resolved as shift
+WARNING: shift/reduce conflict for equals in state 33 resolved as shift
+WARNING: shift/reduce conflict for great in state 33 resolved as shift
+WARNING: shift/reduce conflict for plus in state 36 resolved as shift
+WARNING: shift/reduce conflict for minus in state 36 resolved as shift
+WARNING: shift/reduce conflict for times in state 36 resolved as shift
+WARNING: shift/reduce conflict for divide in state 36 resolved as shift
+WARNING: shift/reduce conflict for less in state 36 resolved as shift
+WARNING: shift/reduce conflict for equals in state 36 resolved as shift
+WARNING: shift/reduce conflict for great in state 36 resolved as shift
+WARNING: shift/reduce conflict for plus in state 41 resolved as shift
+WARNING: shift/reduce conflict for minus in state 41 resolved as shift
+WARNING: shift/reduce conflict for times in state 41 resolved as shift
+WARNING: shift/reduce conflict for divide in state 41 resolved as shift
+WARNING: shift/reduce conflict for less in state 41 resolved as shift
+WARNING: shift/reduce conflict for equals in state 41 resolved as shift
+WARNING: shift/reduce conflict for great in state 41 resolved as shift
+WARNING: shift/reduce conflict for plus in state 42 resolved as shift
+WARNING: shift/reduce conflict for minus in state 42 resolved as shift
+WARNING: shift/reduce conflict for times in state 42 resolved as shift
+WARNING: shift/reduce conflict for divide in state 42 resolved as shift
+WARNING: shift/reduce conflict for less in state 42 resolved as shift
+WARNING: shift/reduce conflict for equals in state 42 resolved as shift
+WARNING: shift/reduce conflict for great in state 42 resolved as shift
+WARNING: shift/reduce conflict for plus in state 43 resolved as shift
+WARNING: shift/reduce conflict for minus in state 43 resolved as shift
+WARNING: shift/reduce conflict for times in state 43 resolved as shift
+WARNING: shift/reduce conflict for divide in state 43 resolved as shift
+WARNING: shift/reduce conflict for less in state 43 resolved as shift
+WARNING: shift/reduce conflict for equals in state 43 resolved as shift
+WARNING: shift/reduce conflict for great in state 43 resolved as shift

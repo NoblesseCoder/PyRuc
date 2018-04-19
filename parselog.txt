@@ -1,0 +1,90 @@
+   yacc.py: 360:PLY: PARSE DEBUG START
+   yacc.py: 408:
+   yacc.py: 409:State  : 0
+   yacc.py: 433:Stack  : . LexToken(name,'x',3,0)
+   yacc.py: 443:Action : Shift and goto state 9
+   yacc.py: 408:
+   yacc.py: 409:State  : 9
+   yacc.py: 428:Defaulted state 9: Reduce using 14
+   yacc.py: 433:Stack  : name . None
+   yacc.py: 469:Action : Reduce rule [LHS -> name] with ['x'] and goto state 6
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 6
+   yacc.py: 433:Stack  : LHS . LexToken(equals,'=',3,2)
+   yacc.py: 443:Action : Shift and goto state 12
+   yacc.py: 408:
+   yacc.py: 409:State  : 12
+   yacc.py: 433:Stack  : LHS equals . LexToken(number,4,3,4)
+   yacc.py: 443:Action : Shift and goto state 15
+   yacc.py: 408:
+   yacc.py: 409:State  : 15
+   yacc.py: 433:Stack  : LHS equals number . LexToken(newline,'\n',3,5)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [4] and goto state 18
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 18
+   yacc.py: 433:Stack  : LHS equals EXPR . LexToken(newline,'\n',3,5)
+   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with [None,'=',None] and goto state 3
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 3
+   yacc.py: 433:Stack  : ASSGN . LexToken(newline,'\n',3,5)
+   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [None] and goto state 2
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 2
+   yacc.py: 433:Stack  : STMT . LexToken(newline,'\n',3,5)
+   yacc.py: 443:Action : Shift and goto state 10
+   yacc.py: 408:
+   yacc.py: 409:State  : 10
+   yacc.py: 433:Stack  : STMT newline . LexToken(name,'y',4,6)
+   yacc.py: 443:Action : Shift and goto state 9
+   yacc.py: 408:
+   yacc.py: 409:State  : 9
+   yacc.py: 428:Defaulted state 9: Reduce using 14
+   yacc.py: 433:Stack  : STMT newline name . None
+   yacc.py: 469:Action : Reduce rule [LHS -> name] with ['y'] and goto state 6
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 6
+   yacc.py: 433:Stack  : STMT newline LHS . LexToken(equals,'=',4,8)
+   yacc.py: 443:Action : Shift and goto state 12
+   yacc.py: 408:
+   yacc.py: 409:State  : 12
+   yacc.py: 433:Stack  : STMT newline LHS equals . LexToken(number,3,4,10)
+   yacc.py: 443:Action : Shift and goto state 15
+   yacc.py: 408:
+   yacc.py: 409:State  : 15
+   yacc.py: 433:Stack  : STMT newline LHS equals number . LexToken(newline,'\n',4,11)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [3] and goto state 18
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 18
+   yacc.py: 433:Stack  : STMT newline LHS equals EXPR . LexToken(newline,'\n',4,11)
+   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with [None,'=',None] and goto state 3
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 3
+   yacc.py: 433:Stack  : STMT newline ASSGN . LexToken(newline,'\n',4,11)
+   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [None] and goto state 2
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 2
+   yacc.py: 433:Stack  : STMT newline STMT . LexToken(newline,'\n',4,11)
+   yacc.py: 443:Action : Shift and goto state 10
+   yacc.py: 408:
+   yacc.py: 409:State  : 10
+   yacc.py: 433:Stack  : STMT newline STMT newline . $end
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline] with [None,'\n'] and goto state 17
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 17
+   yacc.py: 433:Stack  : STMT newline BLOCKSTMT . $end
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline BLOCKSTMT] with [None,'\n',None] and goto state 1
+   yacc.py: 504:Result : <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 1
+   yacc.py: 433:Stack  : BLOCKSTMT . $end
+   yacc.py: 569:Done   : Returning <NoneType @ 0x7fcd75154cd0> (None)
+   yacc.py: 570:PLY: PARSE DEBUG END
