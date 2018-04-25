@@ -5,9 +5,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftplusminuslefttimesdividewhile number plus minus times divide equals lparen logic logicnot rparen comment keywords append string builtinmethod range great rsquare lsquare newline lflower rflower less begin break else end for if true false return then_tok elsif in do quotes dollar commas bar namePROGRAM : BLOCKSTMT\n\tBLOCKSTMT : STMT newline BLOCKSTMT\t\n\t| STMT newline\n\t| STMT\n\t| STMT BLOCKSTMT\n\tT : newline\n\t|\n\tSTMT : ASSGN\n\t| SELECT\n\t| ITER\n\tSELECT : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER\n\tEMPTQC :LABELMAKER :ELSIF : elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER\n\t|\n\tELSE : else BLOCKSTMT\n\t|\n\tCONDEXPR : EXPR less EXPR\n\t| EXPR equals equals EXPR\n\t| EXPR great EXPR\n\t| EXPR great equals EXPR\n\t| EXPR less equals EXPR\n\tASSGN : LHS equals EXPR\n\tLHS : name\n\tEXPR : EXPR plus EXPR\n\t| EXPR minus EXPR\n\t| EXPR times EXPR\n\t| EXPR divide EXPR\n\t| name\n\t| number\n\tITER : while LABELMAKER CONDEXPR do  T BLOCKSTMT T end LABELMAKER\n\t'
+_lr_signature = 'leftplusminuslefttimesdividewhile number plus minus times divide equals lparen logic logicnot rparen comment keywords append string builtinmethod range great rsquare lsquare newline lflower rflower less begin break else end for if true false return then_tok elsif in do quotes dollar commas bar namePROGRAM : BLOCKSTMT\n\tBLOCKSTMT : STMT newline BLOCKSTMT\t\n\t| STMT newline\n\t| STMT\n\t| STMT BLOCKSTMT\n\tT : newline\n\t|\n\tSTMT : ASSGN\n\t| SELECT\n\t| ITER\n\tSELECT : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end \n\tLABEL_E :EMPTQC :LABELMAKER :ELSIF : elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER\n\t|\n\tELSE : else BLOCKSTMT\n\t|\n\tCONDEXPR : EXPR less EXPR\n\t| EXPR equals equals EXPR\n\t| EXPR great EXPR\n\t| EXPR great equals EXPR\n\t| EXPR less equals EXPR\n\tASSGN : LHS equals EXPR\n\tLHS : name\n\tEXPR : EXPR plus EXPR\n\t| EXPR minus EXPR\n\t| EXPR times EXPR\n\t| EXPR divide EXPR\n\t| name\n\t| number\n\tITER : while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER\n\t'
     
-_lr_action_items = {'if':([0,3,4,5,6,11,16,17,20,30,36,37,38,39,40,41,42,46,52,55,57,59,61,62,63,],[8,8,-8,-9,-10,8,-29,-30,-23,-7,-25,-26,-27,-28,-7,8,-6,8,-13,-31,8,-13,-7,-11,8,]),'while':([0,3,4,5,6,11,16,17,20,30,36,37,38,39,40,41,42,46,52,55,57,59,61,62,63,],[9,9,-8,-9,-10,9,-29,-30,-23,-7,-25,-26,-27,-28,-7,9,-6,9,-13,-31,9,-13,-7,-11,9,]),'name':([0,3,4,5,6,8,9,11,13,16,17,18,20,22,24,25,26,27,28,30,32,33,35,36,37,38,39,40,41,42,46,52,54,55,57,59,61,62,63,],[10,10,-8,-9,-10,16,-13,10,16,-29,-30,16,-23,16,16,16,16,16,16,-7,16,16,16,-25,-26,-27,-28,-7,10,-6,10,-13,16,-31,10,-13,-7,-11,10,]),'$end':([1,2,3,4,5,6,11,12,16,17,19,20,36,37,38,39,52,55,59,62,],[0,-1,-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-13,-31,-13,-11,]),'newline':([3,4,5,6,11,12,16,17,19,20,30,36,37,38,39,40,47,48,49,52,55,59,61,62,],[11,-8,-9,-10,-3,-5,-29,-30,-2,-23,42,-25,-26,-27,-28,42,-13,42,42,-13,-31,-13,42,-11,]),'elsif':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,49,51,52,55,59,62,],[-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-6,-13,-7,54,-13,-31,-13,-11,]),'else':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,49,51,52,53,55,59,62,64,65,],[-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-6,-13,-7,-15,-13,57,-31,-13,-11,-13,-14,]),'end':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,48,49,50,51,52,53,55,56,59,60,62,64,65,],[-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-6,-13,-7,-7,52,-15,-13,-17,-31,59,-13,-16,-11,-13,-14,]),'equals':([7,10,15,16,17,22,23,24,36,37,38,39,],[13,-24,23,-29,-30,32,33,35,-25,-26,-27,-28,]),'number':([8,9,13,18,22,24,25,26,27,28,32,33,35,54,],[17,-13,17,17,17,17,17,17,17,17,17,17,17,17,]),'then_tok':([14,16,17,21,31,34,36,37,38,39,43,44,45,58,],[-12,-29,-30,30,-18,-20,-25,-26,-27,-28,-22,-19,-21,61,]),'less':([15,16,17,36,37,38,39,],[22,-29,-30,-25,-26,-27,-28,]),'great':([15,16,17,36,37,38,39,],[24,-29,-30,-25,-26,-27,-28,]),'plus':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[25,-29,-30,25,25,25,-25,-26,-27,-28,25,25,25,]),'minus':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[26,-29,-30,26,26,26,-25,-26,-27,-28,26,26,26,]),'times':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[27,-29,-30,27,27,27,27,27,-27,-28,27,27,27,]),'divide':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[28,-29,-30,28,28,28,28,28,-27,-28,28,28,28,]),'do':([16,17,29,31,34,36,37,38,39,43,44,45,],[-29,-30,40,-18,-20,-25,-26,-27,-28,-22,-19,-21,]),}
+_lr_action_items = {'if':([0,3,4,5,6,11,16,17,20,30,36,37,38,39,41,42,46,48,55,57,59,60,62,63,],[8,8,-8,-9,-10,8,-30,-31,-24,-7,-26,-27,-28,-29,8,-6,-7,8,-14,8,-32,-11,-7,8,]),'while':([0,3,4,5,6,11,16,17,20,30,36,37,38,39,41,42,46,48,55,57,59,60,62,63,],[9,9,-8,-9,-10,9,-30,-31,-24,-7,-26,-27,-28,-29,9,-6,-7,9,-14,9,-32,-11,-7,9,]),'name':([0,3,4,5,6,8,9,11,13,16,17,18,20,22,24,25,26,27,28,30,32,33,35,36,37,38,39,41,42,46,48,54,55,57,59,60,62,63,],[10,10,-8,-9,-10,16,-14,10,16,-30,-31,16,-24,16,16,16,16,16,16,-7,16,16,16,-26,-27,-28,-29,10,-6,-7,10,16,-14,10,-32,-11,-7,10,]),'$end':([1,2,3,4,5,6,11,12,16,17,19,20,36,37,38,39,55,59,60,],[0,-1,-4,-8,-9,-10,-3,-5,-30,-31,-2,-24,-26,-27,-28,-29,-14,-32,-11,]),'newline':([3,4,5,6,11,12,16,17,19,20,30,36,37,38,39,46,50,55,59,60,62,],[11,-8,-9,-10,-3,-5,-30,-31,-2,-24,42,-26,-27,-28,-29,42,42,-14,-32,-11,42,]),'elsif':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,47,49,51,55,59,60,],[-4,-8,-9,-10,-3,-5,-30,-31,-2,-24,-26,-27,-28,-29,-14,-12,54,-14,-32,-11,]),'else':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,47,49,51,53,55,59,60,64,65,],[-4,-8,-9,-10,-3,-5,-30,-31,-2,-24,-26,-27,-28,-29,-14,-12,-16,57,-14,-32,-11,-14,-15,]),'end':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,49,50,51,52,53,55,56,59,60,61,64,65,],[-4,-8,-9,-10,-3,-5,-30,-31,-2,-24,-26,-27,-28,-29,-6,-14,-12,-7,-16,55,-18,-14,60,-32,-11,-17,-14,-15,]),'equals':([7,10,15,16,17,22,23,24,36,37,38,39,],[13,-25,23,-30,-31,32,33,35,-26,-27,-28,-29,]),'number':([8,9,13,18,22,24,25,26,27,28,32,33,35,54,],[17,-14,17,17,17,17,17,17,17,17,17,17,17,17,]),'then_tok':([14,16,17,21,31,34,36,37,38,39,43,44,45,58,],[-13,-30,-31,30,-19,-21,-26,-27,-28,-29,-23,-20,-22,62,]),'less':([15,16,17,36,37,38,39,],[22,-30,-31,-26,-27,-28,-29,]),'great':([15,16,17,36,37,38,39,],[24,-30,-31,-26,-27,-28,-29,]),'plus':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[25,-30,-31,25,25,25,-26,-27,-28,-29,25,25,25,]),'minus':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[26,-30,-31,26,26,26,-26,-27,-28,-29,26,26,26,]),'times':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[27,-30,-31,27,27,27,27,27,-28,-29,27,27,27,]),'divide':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[28,-30,-31,28,28,28,28,28,-28,-29,28,28,28,]),'do':([16,17,29,31,34,36,37,38,39,40,43,44,45,],[-30,-31,-13,-19,-21,-26,-27,-28,-29,46,-23,-20,-22,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'PROGRAM':([0,],[1,]),'BLOCKSTMT':([0,3,11,41,46,57,63,],[2,12,19,47,48,60,64,]),'STMT':([0,3,11,41,46,57,63,],[3,3,3,3,3,3,3,]),'ASSGN':([0,3,11,41,46,57,63,],[4,4,4,4,4,4,4,]),'SELECT':([0,3,11,41,46,57,63,],[5,5,5,5,5,5,5,]),'ITER':([0,3,11,41,46,57,63,],[6,6,6,6,6,6,6,]),'LHS':([0,3,11,41,46,57,63,],[7,7,7,7,7,7,7,]),'CONDEXPR':([8,18,54,],[14,29,58,]),'EXPR':([8,13,18,22,24,25,26,27,28,32,33,35,54,],[15,20,15,31,34,36,37,38,39,43,44,45,15,]),'LABELMAKER':([9,47,52,59,64,],[18,49,55,62,65,]),'EMPTQC':([14,],[21,]),'T':([30,40,48,49,61,],[41,46,50,51,63,]),'ELSIF':([51,],[53,]),'ELSE':([53,],[56,]),}
+_lr_goto_items = {'PROGRAM':([0,],[1,]),'BLOCKSTMT':([0,3,11,41,48,57,63,],[2,12,19,47,50,61,64,]),'STMT':([0,3,11,41,48,57,63,],[3,3,3,3,3,3,3,]),'ASSGN':([0,3,11,41,48,57,63,],[4,4,4,4,4,4,4,]),'SELECT':([0,3,11,41,48,57,63,],[5,5,5,5,5,5,5,]),'ITER':([0,3,11,41,48,57,63,],[6,6,6,6,6,6,6,]),'LHS':([0,3,11,41,48,57,63,],[7,7,7,7,7,7,7,]),'CONDEXPR':([8,18,54,],[14,29,58,]),'EXPR':([8,13,18,22,24,25,26,27,28,32,33,35,54,],[15,20,15,31,34,36,37,38,39,43,44,45,15,]),'LABELMAKER':([9,47,55,64,],[18,49,59,65,]),'EMPTQC':([14,29,],[21,40,]),'T':([30,46,50,62,],[41,48,52,63,]),'LABEL_E':([49,],[51,]),'ELSIF':([51,],[53,]),'ELSE':([53,],[56,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,35 +26,36 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> PROGRAM","S'",1,None,None,None),
-  ('PROGRAM -> BLOCKSTMT','PROGRAM',1,'p_PROGRAM','yacc.py',16),
-  ('BLOCKSTMT -> STMT newline BLOCKSTMT','BLOCKSTMT',3,'p_BLOCKSTMT','yacc.py',20),
-  ('BLOCKSTMT -> STMT newline','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',21),
-  ('BLOCKSTMT -> STMT','BLOCKSTMT',1,'p_BLOCKSTMT','yacc.py',22),
-  ('BLOCKSTMT -> STMT BLOCKSTMT','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',23),
-  ('T -> newline','T',1,'p_T','yacc.py',33),
-  ('T -> <empty>','T',0,'p_T','yacc.py',34),
-  ('STMT -> ASSGN','STMT',1,'p_STMT','yacc.py',37),
-  ('STMT -> SELECT','STMT',1,'p_STMT','yacc.py',38),
-  ('STMT -> ITER','STMT',1,'p_STMT','yacc.py',39),
-  ('SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER','SELECT',12,'p_SELECT','yacc.py',44),
-  ('EMPTQC -> <empty>','EMPTQC',0,'p_EMPTQC','yacc.py',50),
-  ('LABELMAKER -> <empty>','LABELMAKER',0,'p_LABELMAKER','yacc.py',65),
-  ('ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER','ELSIF',6,'p_ELSIF','yacc.py',71),
-  ('ELSIF -> <empty>','ELSIF',0,'p_ELSIF','yacc.py',72),
-  ('ELSE -> else BLOCKSTMT','ELSE',2,'p_ELSE','yacc.py',91),
-  ('ELSE -> <empty>','ELSE',0,'p_ELSE','yacc.py',92),
-  ('CONDEXPR -> EXPR less EXPR','CONDEXPR',3,'p_CONDEXPR','yacc.py',99),
-  ('CONDEXPR -> EXPR equals equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',100),
-  ('CONDEXPR -> EXPR great EXPR','CONDEXPR',3,'p_CONDEXPR','yacc.py',101),
-  ('CONDEXPR -> EXPR great equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',102),
-  ('CONDEXPR -> EXPR less equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',103),
-  ('ASSGN -> LHS equals EXPR','ASSGN',3,'p_ASSGN','yacc.py',141),
-  ('LHS -> name','LHS',1,'p_LHS','yacc.py',165),
-  ('EXPR -> EXPR plus EXPR','EXPR',3,'p_EXPR','yacc.py',170),
-  ('EXPR -> EXPR minus EXPR','EXPR',3,'p_EXPR','yacc.py',171),
-  ('EXPR -> EXPR times EXPR','EXPR',3,'p_EXPR','yacc.py',172),
-  ('EXPR -> EXPR divide EXPR','EXPR',3,'p_EXPR','yacc.py',173),
-  ('EXPR -> name','EXPR',1,'p_EXPR','yacc.py',174),
-  ('EXPR -> number','EXPR',1,'p_EXPR','yacc.py',175),
-  ('ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER','ITER',9,'p_ITER','yacc.py',214),
+  ('PROGRAM -> BLOCKSTMT','PROGRAM',1,'p_PROGRAM','yacc.py',18),
+  ('BLOCKSTMT -> STMT newline BLOCKSTMT','BLOCKSTMT',3,'p_BLOCKSTMT','yacc.py',23),
+  ('BLOCKSTMT -> STMT newline','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',24),
+  ('BLOCKSTMT -> STMT','BLOCKSTMT',1,'p_BLOCKSTMT','yacc.py',25),
+  ('BLOCKSTMT -> STMT BLOCKSTMT','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',26),
+  ('T -> newline','T',1,'p_T','yacc.py',39),
+  ('T -> <empty>','T',0,'p_T','yacc.py',40),
+  ('STMT -> ASSGN','STMT',1,'p_STMT','yacc.py',43),
+  ('STMT -> SELECT','STMT',1,'p_STMT','yacc.py',44),
+  ('STMT -> ITER','STMT',1,'p_STMT','yacc.py',45),
+  ('SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end','SELECT',11,'p_SELECT','yacc.py',50),
+  ('LABEL_E -> <empty>','LABEL_E',0,'p_LABEL_E','yacc.py',57),
+  ('EMPTQC -> <empty>','EMPTQC',0,'p_EMPTQC','yacc.py',63),
+  ('LABELMAKER -> <empty>','LABELMAKER',0,'p_LABELMAKER','yacc.py',78),
+  ('ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER','ELSIF',6,'p_ELSIF','yacc.py',84),
+  ('ELSIF -> <empty>','ELSIF',0,'p_ELSIF','yacc.py',85),
+  ('ELSE -> else BLOCKSTMT','ELSE',2,'p_ELSE','yacc.py',104),
+  ('ELSE -> <empty>','ELSE',0,'p_ELSE','yacc.py',105),
+  ('CONDEXPR -> EXPR less EXPR','CONDEXPR',3,'p_CONDEXPR','yacc.py',114),
+  ('CONDEXPR -> EXPR equals equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',115),
+  ('CONDEXPR -> EXPR great EXPR','CONDEXPR',3,'p_CONDEXPR','yacc.py',116),
+  ('CONDEXPR -> EXPR great equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',117),
+  ('CONDEXPR -> EXPR less equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',118),
+  ('ASSGN -> LHS equals EXPR','ASSGN',3,'p_ASSGN','yacc.py',156),
+  ('LHS -> name','LHS',1,'p_LHS','yacc.py',180),
+  ('EXPR -> EXPR plus EXPR','EXPR',3,'p_EXPR','yacc.py',185),
+  ('EXPR -> EXPR minus EXPR','EXPR',3,'p_EXPR','yacc.py',186),
+  ('EXPR -> EXPR times EXPR','EXPR',3,'p_EXPR','yacc.py',187),
+  ('EXPR -> EXPR divide EXPR','EXPR',3,'p_EXPR','yacc.py',188),
+  ('EXPR -> name','EXPR',1,'p_EXPR','yacc.py',189),
+  ('EXPR -> number','EXPR',1,'p_EXPR','yacc.py',190),
+  ('ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER','ITER',10,'p_ITER','yacc.py',229),
 ]

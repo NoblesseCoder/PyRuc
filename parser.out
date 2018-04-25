@@ -41,27 +41,28 @@ Rule 7     T -> <empty>
 Rule 8     STMT -> ASSGN
 Rule 9     STMT -> SELECT
 Rule 10    STMT -> ITER
-Rule 11    SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-Rule 12    EMPTQC -> <empty>
-Rule 13    LABELMAKER -> <empty>
-Rule 14    ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER
-Rule 15    ELSIF -> <empty>
-Rule 16    ELSE -> else BLOCKSTMT
-Rule 17    ELSE -> <empty>
-Rule 18    CONDEXPR -> EXPR less EXPR
-Rule 19    CONDEXPR -> EXPR equals equals EXPR
-Rule 20    CONDEXPR -> EXPR great EXPR
-Rule 21    CONDEXPR -> EXPR great equals EXPR
-Rule 22    CONDEXPR -> EXPR less equals EXPR
-Rule 23    ASSGN -> LHS equals EXPR
-Rule 24    LHS -> name
-Rule 25    EXPR -> EXPR plus EXPR
-Rule 26    EXPR -> EXPR minus EXPR
-Rule 27    EXPR -> EXPR times EXPR
-Rule 28    EXPR -> EXPR divide EXPR
-Rule 29    EXPR -> name
-Rule 30    EXPR -> number
-Rule 31    ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
+Rule 11    SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+Rule 12    LABEL_E -> <empty>
+Rule 13    EMPTQC -> <empty>
+Rule 14    LABELMAKER -> <empty>
+Rule 15    ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER
+Rule 16    ELSIF -> <empty>
+Rule 17    ELSE -> else BLOCKSTMT
+Rule 18    ELSE -> <empty>
+Rule 19    CONDEXPR -> EXPR less EXPR
+Rule 20    CONDEXPR -> EXPR equals equals EXPR
+Rule 21    CONDEXPR -> EXPR great EXPR
+Rule 22    CONDEXPR -> EXPR great equals EXPR
+Rule 23    CONDEXPR -> EXPR less equals EXPR
+Rule 24    ASSGN -> LHS equals EXPR
+Rule 25    LHS -> name
+Rule 26    EXPR -> EXPR plus EXPR
+Rule 27    EXPR -> EXPR minus EXPR
+Rule 28    EXPR -> EXPR times EXPR
+Rule 29    EXPR -> EXPR divide EXPR
+Rule 30    EXPR -> name
+Rule 31    EXPR -> number
+Rule 32    ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
 
 Terminals, with rules where they appear
 
@@ -72,31 +73,31 @@ break                :
 builtinmethod        : 
 commas               : 
 comment              : 
-divide               : 28
-do                   : 31
+divide               : 29
+do                   : 32
 dollar               : 
-else                 : 16
-elsif                : 14
-end                  : 11 31
-equals               : 19 19 21 22 23
+else                 : 17
+elsif                : 15
+end                  : 11 32
+equals               : 20 20 22 23 24
 error                : 
 false                : 
 for                  : 
-great                : 20 21
+great                : 21 22
 if                   : 11
 in                   : 
 keywords             : 
-less                 : 18 22
+less                 : 19 23
 lflower              : 
 logic                : 
 logicnot             : 
 lparen               : 
 lsquare              : 
-minus                : 26
-name                 : 24 29
+minus                : 27
+name                 : 25 30
 newline              : 2 3 6
-number               : 30
-plus                 : 25
+number               : 31
+plus                 : 26
 quotes               : 
 range                : 
 return               : 
@@ -104,27 +105,28 @@ rflower              :
 rparen               : 
 rsquare              : 
 string               : 
-then_tok             : 11 14
-times                : 27
+then_tok             : 11 15
+times                : 28
 true                 : 
-while                : 31
+while                : 32
 
 Nonterminals, with rules where they appear
 
 ASSGN                : 8
-BLOCKSTMT            : 1 2 5 11 14 16 31
-CONDEXPR             : 11 14 31
+BLOCKSTMT            : 1 2 5 11 15 17 32
+CONDEXPR             : 11 15 32
 ELSE                 : 11
 ELSIF                : 11
-EMPTQC               : 11
-EXPR                 : 18 18 19 19 20 20 21 21 22 22 23 25 25 26 26 27 27 28 28
+EMPTQC               : 11 32
+EXPR                 : 19 19 20 20 21 21 22 22 23 23 24 26 26 27 27 28 28 29 29
 ITER                 : 10
-LABELMAKER           : 11 11 14 31 31
-LHS                  : 23
+LABELMAKER           : 11 15 32 32
+LABEL_E              : 11
+LHS                  : 24
 PROGRAM              : 0
 SELECT               : 9
 STMT                 : 2 3 4 5
-T                    : 11 11 14 31 31
+T                    : 11 15 32 32
 
 Parsing method: LALR
 
@@ -139,10 +141,10 @@ state 0
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
     if              shift and go to state 8
     while           shift and go to state 9
@@ -182,10 +184,10 @@ state 3
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
   ! shift/reduce conflict for newline resolved as shift
     newline         shift and go to state 11
@@ -250,25 +252,25 @@ state 6
 
 state 7
 
-    (23) ASSGN -> LHS . equals EXPR
+    (24) ASSGN -> LHS . equals EXPR
 
     equals          shift and go to state 13
 
 
 state 8
 
-    (11) SELECT -> if . CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (18) CONDEXPR -> . EXPR less EXPR
-    (19) CONDEXPR -> . EXPR equals equals EXPR
-    (20) CONDEXPR -> . EXPR great EXPR
-    (21) CONDEXPR -> . EXPR great equals EXPR
-    (22) CONDEXPR -> . EXPR less equals EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (11) SELECT -> if . CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (19) CONDEXPR -> . EXPR less EXPR
+    (20) CONDEXPR -> . EXPR equals equals EXPR
+    (21) CONDEXPR -> . EXPR great EXPR
+    (22) CONDEXPR -> . EXPR great equals EXPR
+    (23) CONDEXPR -> . EXPR less equals EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -278,19 +280,19 @@ state 8
 
 state 9
 
-    (31) ITER -> while . LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (13) LABELMAKER -> .
+    (32) ITER -> while . LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (14) LABELMAKER -> .
 
-    name            reduce using rule 13 (LABELMAKER -> .)
-    number          reduce using rule 13 (LABELMAKER -> .)
+    name            reduce using rule 14 (LABELMAKER -> .)
+    number          reduce using rule 14 (LABELMAKER -> .)
 
     LABELMAKER                     shift and go to state 18
 
 state 10
 
-    (24) LHS -> name .
+    (25) LHS -> name .
 
-    equals          reduce using rule 24 (LHS -> name .)
+    equals          reduce using rule 25 (LHS -> name .)
 
 
 state 11
@@ -304,16 +306,16 @@ state 11
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
     $end            reduce using rule 3 (BLOCKSTMT -> STMT newline .)
-    newline         reduce using rule 3 (BLOCKSTMT -> STMT newline .)
     elsif           reduce using rule 3 (BLOCKSTMT -> STMT newline .)
     else            reduce using rule 3 (BLOCKSTMT -> STMT newline .)
     end             reduce using rule 3 (BLOCKSTMT -> STMT newline .)
+    newline         reduce using rule 3 (BLOCKSTMT -> STMT newline .)
     if              shift and go to state 8
     while           shift and go to state 9
     name            shift and go to state 10
@@ -330,21 +332,21 @@ state 12
     (5) BLOCKSTMT -> STMT BLOCKSTMT .
 
     $end            reduce using rule 5 (BLOCKSTMT -> STMT BLOCKSTMT .)
-    newline         reduce using rule 5 (BLOCKSTMT -> STMT BLOCKSTMT .)
     elsif           reduce using rule 5 (BLOCKSTMT -> STMT BLOCKSTMT .)
     else            reduce using rule 5 (BLOCKSTMT -> STMT BLOCKSTMT .)
     end             reduce using rule 5 (BLOCKSTMT -> STMT BLOCKSTMT .)
+    newline         reduce using rule 5 (BLOCKSTMT -> STMT BLOCKSTMT .)
 
 
 state 13
 
-    (23) ASSGN -> LHS equals . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (24) ASSGN -> LHS equals . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -353,24 +355,24 @@ state 13
 
 state 14
 
-    (11) SELECT -> if CONDEXPR . EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (12) EMPTQC -> .
+    (11) SELECT -> if CONDEXPR . EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (13) EMPTQC -> .
 
-    then_tok        reduce using rule 12 (EMPTQC -> .)
+    then_tok        reduce using rule 13 (EMPTQC -> .)
 
     EMPTQC                         shift and go to state 21
 
 state 15
 
-    (18) CONDEXPR -> EXPR . less EXPR
-    (19) CONDEXPR -> EXPR . equals equals EXPR
-    (20) CONDEXPR -> EXPR . great EXPR
-    (21) CONDEXPR -> EXPR . great equals EXPR
-    (22) CONDEXPR -> EXPR . less equals EXPR
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (19) CONDEXPR -> EXPR . less EXPR
+    (20) CONDEXPR -> EXPR . equals equals EXPR
+    (21) CONDEXPR -> EXPR . great EXPR
+    (22) CONDEXPR -> EXPR . great equals EXPR
+    (23) CONDEXPR -> EXPR . less equals EXPR
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
     less            shift and go to state 22
     equals          shift and go to state 23
@@ -383,64 +385,64 @@ state 15
 
 state 16
 
-    (29) EXPR -> name .
+    (30) EXPR -> name .
 
-    less            reduce using rule 29 (EXPR -> name .)
-    equals          reduce using rule 29 (EXPR -> name .)
-    great           reduce using rule 29 (EXPR -> name .)
-    plus            reduce using rule 29 (EXPR -> name .)
-    minus           reduce using rule 29 (EXPR -> name .)
-    times           reduce using rule 29 (EXPR -> name .)
-    divide          reduce using rule 29 (EXPR -> name .)
-    newline         reduce using rule 29 (EXPR -> name .)
-    if              reduce using rule 29 (EXPR -> name .)
-    while           reduce using rule 29 (EXPR -> name .)
-    name            reduce using rule 29 (EXPR -> name .)
-    $end            reduce using rule 29 (EXPR -> name .)
-    elsif           reduce using rule 29 (EXPR -> name .)
-    else            reduce using rule 29 (EXPR -> name .)
-    end             reduce using rule 29 (EXPR -> name .)
-    then_tok        reduce using rule 29 (EXPR -> name .)
-    do              reduce using rule 29 (EXPR -> name .)
+    less            reduce using rule 30 (EXPR -> name .)
+    equals          reduce using rule 30 (EXPR -> name .)
+    great           reduce using rule 30 (EXPR -> name .)
+    plus            reduce using rule 30 (EXPR -> name .)
+    minus           reduce using rule 30 (EXPR -> name .)
+    times           reduce using rule 30 (EXPR -> name .)
+    divide          reduce using rule 30 (EXPR -> name .)
+    newline         reduce using rule 30 (EXPR -> name .)
+    if              reduce using rule 30 (EXPR -> name .)
+    while           reduce using rule 30 (EXPR -> name .)
+    name            reduce using rule 30 (EXPR -> name .)
+    $end            reduce using rule 30 (EXPR -> name .)
+    elsif           reduce using rule 30 (EXPR -> name .)
+    else            reduce using rule 30 (EXPR -> name .)
+    end             reduce using rule 30 (EXPR -> name .)
+    then_tok        reduce using rule 30 (EXPR -> name .)
+    do              reduce using rule 30 (EXPR -> name .)
 
 
 state 17
 
-    (30) EXPR -> number .
+    (31) EXPR -> number .
 
-    less            reduce using rule 30 (EXPR -> number .)
-    equals          reduce using rule 30 (EXPR -> number .)
-    great           reduce using rule 30 (EXPR -> number .)
-    plus            reduce using rule 30 (EXPR -> number .)
-    minus           reduce using rule 30 (EXPR -> number .)
-    times           reduce using rule 30 (EXPR -> number .)
-    divide          reduce using rule 30 (EXPR -> number .)
-    newline         reduce using rule 30 (EXPR -> number .)
-    if              reduce using rule 30 (EXPR -> number .)
-    while           reduce using rule 30 (EXPR -> number .)
-    name            reduce using rule 30 (EXPR -> number .)
-    $end            reduce using rule 30 (EXPR -> number .)
-    elsif           reduce using rule 30 (EXPR -> number .)
-    else            reduce using rule 30 (EXPR -> number .)
-    end             reduce using rule 30 (EXPR -> number .)
-    then_tok        reduce using rule 30 (EXPR -> number .)
-    do              reduce using rule 30 (EXPR -> number .)
+    less            reduce using rule 31 (EXPR -> number .)
+    equals          reduce using rule 31 (EXPR -> number .)
+    great           reduce using rule 31 (EXPR -> number .)
+    plus            reduce using rule 31 (EXPR -> number .)
+    minus           reduce using rule 31 (EXPR -> number .)
+    times           reduce using rule 31 (EXPR -> number .)
+    divide          reduce using rule 31 (EXPR -> number .)
+    newline         reduce using rule 31 (EXPR -> number .)
+    if              reduce using rule 31 (EXPR -> number .)
+    while           reduce using rule 31 (EXPR -> number .)
+    name            reduce using rule 31 (EXPR -> number .)
+    $end            reduce using rule 31 (EXPR -> number .)
+    elsif           reduce using rule 31 (EXPR -> number .)
+    else            reduce using rule 31 (EXPR -> number .)
+    end             reduce using rule 31 (EXPR -> number .)
+    then_tok        reduce using rule 31 (EXPR -> number .)
+    do              reduce using rule 31 (EXPR -> number .)
 
 
 state 18
 
-    (31) ITER -> while LABELMAKER . CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (18) CONDEXPR -> . EXPR less EXPR
-    (19) CONDEXPR -> . EXPR equals equals EXPR
-    (20) CONDEXPR -> . EXPR great EXPR
-    (21) CONDEXPR -> . EXPR great equals EXPR
-    (22) CONDEXPR -> . EXPR less equals EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (32) ITER -> while LABELMAKER . CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (19) CONDEXPR -> . EXPR less EXPR
+    (20) CONDEXPR -> . EXPR equals equals EXPR
+    (21) CONDEXPR -> . EXPR great EXPR
+    (22) CONDEXPR -> . EXPR great equals EXPR
+    (23) CONDEXPR -> . EXPR less equals EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -453,28 +455,28 @@ state 19
     (2) BLOCKSTMT -> STMT newline BLOCKSTMT .
 
     $end            reduce using rule 2 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
-    newline         reduce using rule 2 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
     elsif           reduce using rule 2 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
     else            reduce using rule 2 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
     end             reduce using rule 2 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
+    newline         reduce using rule 2 (BLOCKSTMT -> STMT newline BLOCKSTMT .)
 
 
 state 20
 
-    (23) ASSGN -> LHS equals EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (24) ASSGN -> LHS equals EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    newline         reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    if              reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    while           reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    name            reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    $end            reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    elsif           reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    else            reduce using rule 23 (ASSGN -> LHS equals EXPR .)
-    end             reduce using rule 23 (ASSGN -> LHS equals EXPR .)
+    newline         reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    if              reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    while           reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    name            reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    $end            reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    elsif           reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    else            reduce using rule 24 (ASSGN -> LHS equals EXPR .)
+    end             reduce using rule 24 (ASSGN -> LHS equals EXPR .)
     plus            shift and go to state 25
     minus           shift and go to state 26
     times           shift and go to state 27
@@ -483,21 +485,21 @@ state 20
 
 state 21
 
-    (11) SELECT -> if CONDEXPR EMPTQC . then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
+    (11) SELECT -> if CONDEXPR EMPTQC . then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
 
     then_tok        shift and go to state 30
 
 
 state 22
 
-    (18) CONDEXPR -> EXPR less . EXPR
-    (22) CONDEXPR -> EXPR less . equals EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (19) CONDEXPR -> EXPR less . EXPR
+    (23) CONDEXPR -> EXPR less . equals EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     equals          shift and go to state 32
     name            shift and go to state 16
@@ -507,21 +509,21 @@ state 22
 
 state 23
 
-    (19) CONDEXPR -> EXPR equals . equals EXPR
+    (20) CONDEXPR -> EXPR equals . equals EXPR
 
     equals          shift and go to state 33
 
 
 state 24
 
-    (20) CONDEXPR -> EXPR great . EXPR
-    (21) CONDEXPR -> EXPR great . equals EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (21) CONDEXPR -> EXPR great . EXPR
+    (22) CONDEXPR -> EXPR great . equals EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     equals          shift and go to state 35
     name            shift and go to state 16
@@ -531,13 +533,13 @@ state 24
 
 state 25
 
-    (25) EXPR -> EXPR plus . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (26) EXPR -> EXPR plus . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -546,13 +548,13 @@ state 25
 
 state 26
 
-    (26) EXPR -> EXPR minus . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (27) EXPR -> EXPR minus . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -561,13 +563,13 @@ state 26
 
 state 27
 
-    (27) EXPR -> EXPR times . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (28) EXPR -> EXPR times . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -576,13 +578,13 @@ state 27
 
 state 28
 
-    (28) EXPR -> EXPR divide . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (29) EXPR -> EXPR divide . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -591,14 +593,16 @@ state 28
 
 state 29
 
-    (31) ITER -> while LABELMAKER CONDEXPR . do T BLOCKSTMT T end LABELMAKER
+    (32) ITER -> while LABELMAKER CONDEXPR . EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (13) EMPTQC -> .
 
-    do              shift and go to state 40
+    do              reduce using rule 13 (EMPTQC -> .)
 
+    EMPTQC                         shift and go to state 40
 
 state 30
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok . T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok . T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
     (6) T -> . newline
     (7) T -> .
 
@@ -611,14 +615,14 @@ state 30
 
 state 31
 
-    (18) CONDEXPR -> EXPR less EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (19) CONDEXPR -> EXPR less EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    then_tok        reduce using rule 18 (CONDEXPR -> EXPR less EXPR .)
-    do              reduce using rule 18 (CONDEXPR -> EXPR less EXPR .)
+    then_tok        reduce using rule 19 (CONDEXPR -> EXPR less EXPR .)
+    do              reduce using rule 19 (CONDEXPR -> EXPR less EXPR .)
     plus            shift and go to state 25
     minus           shift and go to state 26
     times           shift and go to state 27
@@ -627,13 +631,13 @@ state 31
 
 state 32
 
-    (22) CONDEXPR -> EXPR less equals . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (23) CONDEXPR -> EXPR less equals . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -642,13 +646,13 @@ state 32
 
 state 33
 
-    (19) CONDEXPR -> EXPR equals equals . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (20) CONDEXPR -> EXPR equals equals . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -657,14 +661,14 @@ state 33
 
 state 34
 
-    (20) CONDEXPR -> EXPR great EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (21) CONDEXPR -> EXPR great EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    then_tok        reduce using rule 20 (CONDEXPR -> EXPR great EXPR .)
-    do              reduce using rule 20 (CONDEXPR -> EXPR great EXPR .)
+    then_tok        reduce using rule 21 (CONDEXPR -> EXPR great EXPR .)
+    do              reduce using rule 21 (CONDEXPR -> EXPR great EXPR .)
     plus            shift and go to state 25
     minus           shift and go to state 26
     times           shift and go to state 27
@@ -673,13 +677,13 @@ state 34
 
 state 35
 
-    (21) CONDEXPR -> EXPR great equals . EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (22) CONDEXPR -> EXPR great equals . EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -688,93 +692,93 @@ state 35
 
 state 36
 
-    (25) EXPR -> EXPR plus EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (26) EXPR -> EXPR plus EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    less            reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    equals          reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    great           reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    plus            reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    minus           reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    newline         reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    if              reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    while           reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    name            reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    $end            reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    elsif           reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    else            reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    end             reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    then_tok        reduce using rule 25 (EXPR -> EXPR plus EXPR .)
-    do              reduce using rule 25 (EXPR -> EXPR plus EXPR .)
+    less            reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    equals          reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    great           reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    plus            reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    minus           reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    newline         reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    if              reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    while           reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    name            reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    $end            reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    elsif           reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    else            reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    end             reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    then_tok        reduce using rule 26 (EXPR -> EXPR plus EXPR .)
+    do              reduce using rule 26 (EXPR -> EXPR plus EXPR .)
     times           shift and go to state 27
     divide          shift and go to state 28
 
-  ! times           [ reduce using rule 25 (EXPR -> EXPR plus EXPR .) ]
-  ! divide          [ reduce using rule 25 (EXPR -> EXPR plus EXPR .) ]
+  ! times           [ reduce using rule 26 (EXPR -> EXPR plus EXPR .) ]
+  ! divide          [ reduce using rule 26 (EXPR -> EXPR plus EXPR .) ]
   ! plus            [ shift and go to state 25 ]
   ! minus           [ shift and go to state 26 ]
 
 
 state 37
 
-    (26) EXPR -> EXPR minus EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (27) EXPR -> EXPR minus EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    less            reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    equals          reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    great           reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    plus            reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    minus           reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    newline         reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    if              reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    while           reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    name            reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    $end            reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    elsif           reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    else            reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    end             reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    then_tok        reduce using rule 26 (EXPR -> EXPR minus EXPR .)
-    do              reduce using rule 26 (EXPR -> EXPR minus EXPR .)
+    less            reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    equals          reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    great           reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    plus            reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    minus           reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    newline         reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    if              reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    while           reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    name            reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    $end            reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    elsif           reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    else            reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    end             reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    then_tok        reduce using rule 27 (EXPR -> EXPR minus EXPR .)
+    do              reduce using rule 27 (EXPR -> EXPR minus EXPR .)
     times           shift and go to state 27
     divide          shift and go to state 28
 
-  ! times           [ reduce using rule 26 (EXPR -> EXPR minus EXPR .) ]
-  ! divide          [ reduce using rule 26 (EXPR -> EXPR minus EXPR .) ]
+  ! times           [ reduce using rule 27 (EXPR -> EXPR minus EXPR .) ]
+  ! divide          [ reduce using rule 27 (EXPR -> EXPR minus EXPR .) ]
   ! plus            [ shift and go to state 25 ]
   ! minus           [ shift and go to state 26 ]
 
 
 state 38
 
-    (27) EXPR -> EXPR times EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (28) EXPR -> EXPR times EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    less            reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    equals          reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    great           reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    plus            reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    minus           reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    times           reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    divide          reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    newline         reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    if              reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    while           reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    name            reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    $end            reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    elsif           reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    else            reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    end             reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    then_tok        reduce using rule 27 (EXPR -> EXPR times EXPR .)
-    do              reduce using rule 27 (EXPR -> EXPR times EXPR .)
+    less            reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    equals          reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    great           reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    plus            reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    minus           reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    times           reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    divide          reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    newline         reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    if              reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    while           reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    name            reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    $end            reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    elsif           reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    else            reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    end             reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    then_tok        reduce using rule 28 (EXPR -> EXPR times EXPR .)
+    do              reduce using rule 28 (EXPR -> EXPR times EXPR .)
 
   ! plus            [ shift and go to state 25 ]
   ! minus           [ shift and go to state 26 ]
@@ -784,29 +788,29 @@ state 38
 
 state 39
 
-    (28) EXPR -> EXPR divide EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (29) EXPR -> EXPR divide EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    less            reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    equals          reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    great           reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    plus            reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    minus           reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    times           reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    divide          reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    newline         reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    if              reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    while           reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    name            reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    $end            reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    elsif           reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    else            reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    end             reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    then_tok        reduce using rule 28 (EXPR -> EXPR divide EXPR .)
-    do              reduce using rule 28 (EXPR -> EXPR divide EXPR .)
+    less            reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    equals          reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    great           reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    plus            reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    minus           reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    times           reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    divide          reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    newline         reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    if              reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    while           reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    name            reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    $end            reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    elsif           reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    else            reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    end             reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    then_tok        reduce using rule 29 (EXPR -> EXPR divide EXPR .)
+    do              reduce using rule 29 (EXPR -> EXPR divide EXPR .)
 
   ! plus            [ shift and go to state 25 ]
   ! minus           [ shift and go to state 26 ]
@@ -816,20 +820,14 @@ state 39
 
 state 40
 
-    (31) ITER -> while LABELMAKER CONDEXPR do . T BLOCKSTMT T end LABELMAKER
-    (6) T -> . newline
-    (7) T -> .
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC . do T BLOCKSTMT T end LABELMAKER
 
-    newline         shift and go to state 42
-    if              reduce using rule 7 (T -> .)
-    while           reduce using rule 7 (T -> .)
-    name            reduce using rule 7 (T -> .)
+    do              shift and go to state 46
 
-    T                              shift and go to state 46
 
 state 41
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T . BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T . BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
     (2) BLOCKSTMT -> . STMT newline BLOCKSTMT
     (3) BLOCKSTMT -> . STMT newline
     (4) BLOCKSTMT -> . STMT
@@ -837,10 +835,10 @@ state 41
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
     if              shift and go to state 8
     while           shift and go to state 9
@@ -861,20 +859,18 @@ state 42
     while           reduce using rule 6 (T -> newline .)
     name            reduce using rule 6 (T -> newline .)
     end             reduce using rule 6 (T -> newline .)
-    elsif           reduce using rule 6 (T -> newline .)
-    else            reduce using rule 6 (T -> newline .)
 
 
 state 43
 
-    (22) CONDEXPR -> EXPR less equals EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (23) CONDEXPR -> EXPR less equals EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    then_tok        reduce using rule 22 (CONDEXPR -> EXPR less equals EXPR .)
-    do              reduce using rule 22 (CONDEXPR -> EXPR less equals EXPR .)
+    then_tok        reduce using rule 23 (CONDEXPR -> EXPR less equals EXPR .)
+    do              reduce using rule 23 (CONDEXPR -> EXPR less equals EXPR .)
     plus            shift and go to state 25
     minus           shift and go to state 26
     times           shift and go to state 27
@@ -883,14 +879,14 @@ state 43
 
 state 44
 
-    (19) CONDEXPR -> EXPR equals equals EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (20) CONDEXPR -> EXPR equals equals EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    then_tok        reduce using rule 19 (CONDEXPR -> EXPR equals equals EXPR .)
-    do              reduce using rule 19 (CONDEXPR -> EXPR equals equals EXPR .)
+    then_tok        reduce using rule 20 (CONDEXPR -> EXPR equals equals EXPR .)
+    do              reduce using rule 20 (CONDEXPR -> EXPR equals equals EXPR .)
     plus            shift and go to state 25
     minus           shift and go to state 26
     times           shift and go to state 27
@@ -899,14 +895,14 @@ state 44
 
 state 45
 
-    (21) CONDEXPR -> EXPR great equals EXPR .
-    (25) EXPR -> EXPR . plus EXPR
-    (26) EXPR -> EXPR . minus EXPR
-    (27) EXPR -> EXPR . times EXPR
-    (28) EXPR -> EXPR . divide EXPR
+    (22) CONDEXPR -> EXPR great equals EXPR .
+    (26) EXPR -> EXPR . plus EXPR
+    (27) EXPR -> EXPR . minus EXPR
+    (28) EXPR -> EXPR . times EXPR
+    (29) EXPR -> EXPR . divide EXPR
 
-    then_tok        reduce using rule 21 (CONDEXPR -> EXPR great equals EXPR .)
-    do              reduce using rule 21 (CONDEXPR -> EXPR great equals EXPR .)
+    then_tok        reduce using rule 22 (CONDEXPR -> EXPR great equals EXPR .)
+    do              reduce using rule 22 (CONDEXPR -> EXPR great equals EXPR .)
     plus            shift and go to state 25
     minus           shift and go to state 26
     times           shift and go to state 27
@@ -915,7 +911,31 @@ state 45
 
 state 46
 
-    (31) ITER -> while LABELMAKER CONDEXPR do T . BLOCKSTMT T end LABELMAKER
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC do . T BLOCKSTMT T end LABELMAKER
+    (6) T -> . newline
+    (7) T -> .
+
+    newline         shift and go to state 42
+    if              reduce using rule 7 (T -> .)
+    while           reduce using rule 7 (T -> .)
+    name            reduce using rule 7 (T -> .)
+
+    T                              shift and go to state 48
+
+state 47
+
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT . LABELMAKER LABEL_E ELSIF ELSE end
+    (14) LABELMAKER -> .
+
+    elsif           reduce using rule 14 (LABELMAKER -> .)
+    else            reduce using rule 14 (LABELMAKER -> .)
+    end             reduce using rule 14 (LABELMAKER -> .)
+
+    LABELMAKER                     shift and go to state 49
+
+state 48
+
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC do T . BLOCKSTMT T end LABELMAKER
     (2) BLOCKSTMT -> . STMT newline BLOCKSTMT
     (3) BLOCKSTMT -> . STMT newline
     (4) BLOCKSTMT -> . STMT
@@ -923,118 +943,88 @@ state 46
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
     if              shift and go to state 8
     while           shift and go to state 9
     name            shift and go to state 10
 
-    BLOCKSTMT                      shift and go to state 48
+    BLOCKSTMT                      shift and go to state 50
     STMT                           shift and go to state 3
     ASSGN                          shift and go to state 4
     SELECT                         shift and go to state 5
     ITER                           shift and go to state 6
     LHS                            shift and go to state 7
 
-state 47
-
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT . LABELMAKER T ELSIF ELSE end LABELMAKER
-    (13) LABELMAKER -> .
-
-    newline         reduce using rule 13 (LABELMAKER -> .)
-    elsif           reduce using rule 13 (LABELMAKER -> .)
-    else            reduce using rule 13 (LABELMAKER -> .)
-    end             reduce using rule 13 (LABELMAKER -> .)
-
-    LABELMAKER                     shift and go to state 49
-
-state 48
-
-    (31) ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT . T end LABELMAKER
-    (6) T -> . newline
-    (7) T -> .
-
-    newline         shift and go to state 42
-    end             reduce using rule 7 (T -> .)
-
-    T                              shift and go to state 50
-
 state 49
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER . T ELSIF ELSE end LABELMAKER
-    (6) T -> . newline
-    (7) T -> .
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER . LABEL_E ELSIF ELSE end
+    (12) LABEL_E -> .
 
-    newline         shift and go to state 42
-    elsif           reduce using rule 7 (T -> .)
-    else            reduce using rule 7 (T -> .)
-    end             reduce using rule 7 (T -> .)
+    elsif           reduce using rule 12 (LABEL_E -> .)
+    else            reduce using rule 12 (LABEL_E -> .)
+    end             reduce using rule 12 (LABEL_E -> .)
 
-    T                              shift and go to state 51
+    LABEL_E                        shift and go to state 51
 
 state 50
 
-    (31) ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T . end LABELMAKER
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT . T end LABELMAKER
+    (6) T -> . newline
+    (7) T -> .
 
-    end             shift and go to state 52
+    newline         shift and go to state 42
+    end             reduce using rule 7 (T -> .)
 
+    T                              shift and go to state 52
 
 state 51
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T . ELSIF ELSE end LABELMAKER
-    (14) ELSIF -> . elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER
-    (15) ELSIF -> .
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E . ELSIF ELSE end
+    (15) ELSIF -> . elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER
+    (16) ELSIF -> .
 
     elsif           shift and go to state 54
-    else            reduce using rule 15 (ELSIF -> .)
-    end             reduce using rule 15 (ELSIF -> .)
+    else            reduce using rule 16 (ELSIF -> .)
+    end             reduce using rule 16 (ELSIF -> .)
 
     ELSIF                          shift and go to state 53
 
 state 52
 
-    (31) ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end . LABELMAKER
-    (13) LABELMAKER -> .
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T . end LABELMAKER
 
-    newline         reduce using rule 13 (LABELMAKER -> .)
-    if              reduce using rule 13 (LABELMAKER -> .)
-    while           reduce using rule 13 (LABELMAKER -> .)
-    name            reduce using rule 13 (LABELMAKER -> .)
-    $end            reduce using rule 13 (LABELMAKER -> .)
-    elsif           reduce using rule 13 (LABELMAKER -> .)
-    else            reduce using rule 13 (LABELMAKER -> .)
-    end             reduce using rule 13 (LABELMAKER -> .)
+    end             shift and go to state 55
 
-    LABELMAKER                     shift and go to state 55
 
 state 53
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF . ELSE end LABELMAKER
-    (16) ELSE -> . else BLOCKSTMT
-    (17) ELSE -> .
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF . ELSE end
+    (17) ELSE -> . else BLOCKSTMT
+    (18) ELSE -> .
 
     else            shift and go to state 57
-    end             reduce using rule 17 (ELSE -> .)
+    end             reduce using rule 18 (ELSE -> .)
 
     ELSE                           shift and go to state 56
 
 state 54
 
-    (14) ELSIF -> elsif . CONDEXPR then_tok T BLOCKSTMT LABELMAKER
-    (18) CONDEXPR -> . EXPR less EXPR
-    (19) CONDEXPR -> . EXPR equals equals EXPR
-    (20) CONDEXPR -> . EXPR great EXPR
-    (21) CONDEXPR -> . EXPR great equals EXPR
-    (22) CONDEXPR -> . EXPR less equals EXPR
-    (25) EXPR -> . EXPR plus EXPR
-    (26) EXPR -> . EXPR minus EXPR
-    (27) EXPR -> . EXPR times EXPR
-    (28) EXPR -> . EXPR divide EXPR
-    (29) EXPR -> . name
-    (30) EXPR -> . number
+    (15) ELSIF -> elsif . CONDEXPR then_tok T BLOCKSTMT LABELMAKER
+    (19) CONDEXPR -> . EXPR less EXPR
+    (20) CONDEXPR -> . EXPR equals equals EXPR
+    (21) CONDEXPR -> . EXPR great EXPR
+    (22) CONDEXPR -> . EXPR great equals EXPR
+    (23) CONDEXPR -> . EXPR less equals EXPR
+    (26) EXPR -> . EXPR plus EXPR
+    (27) EXPR -> . EXPR minus EXPR
+    (28) EXPR -> . EXPR times EXPR
+    (29) EXPR -> . EXPR divide EXPR
+    (30) EXPR -> . name
+    (31) EXPR -> . number
 
     name            shift and go to state 16
     number          shift and go to state 17
@@ -1044,28 +1034,30 @@ state 54
 
 state 55
 
-    (31) ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end . LABELMAKER
+    (14) LABELMAKER -> .
 
-    newline         reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    if              reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    while           reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    name            reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    $end            reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    elsif           reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    else            reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
-    end             reduce using rule 31 (ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER .)
+    newline         reduce using rule 14 (LABELMAKER -> .)
+    if              reduce using rule 14 (LABELMAKER -> .)
+    while           reduce using rule 14 (LABELMAKER -> .)
+    name            reduce using rule 14 (LABELMAKER -> .)
+    $end            reduce using rule 14 (LABELMAKER -> .)
+    elsif           reduce using rule 14 (LABELMAKER -> .)
+    else            reduce using rule 14 (LABELMAKER -> .)
+    end             reduce using rule 14 (LABELMAKER -> .)
 
+    LABELMAKER                     shift and go to state 59
 
 state 56
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE . end LABELMAKER
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE . end
 
-    end             shift and go to state 59
+    end             shift and go to state 60
 
 
 state 57
 
-    (16) ELSE -> else . BLOCKSTMT
+    (17) ELSE -> else . BLOCKSTMT
     (2) BLOCKSTMT -> . STMT newline BLOCKSTMT
     (3) BLOCKSTMT -> . STMT newline
     (4) BLOCKSTMT -> . STMT
@@ -1073,16 +1065,16 @@ state 57
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
     if              shift and go to state 8
     while           shift and go to state 9
     name            shift and go to state 10
 
-    BLOCKSTMT                      shift and go to state 60
+    BLOCKSTMT                      shift and go to state 61
     STMT                           shift and go to state 3
     ASSGN                          shift and go to state 4
     SELECT                         shift and go to state 5
@@ -1091,37 +1083,49 @@ state 57
 
 state 58
 
-    (14) ELSIF -> elsif CONDEXPR . then_tok T BLOCKSTMT LABELMAKER
+    (15) ELSIF -> elsif CONDEXPR . then_tok T BLOCKSTMT LABELMAKER
 
-    then_tok        shift and go to state 61
+    then_tok        shift and go to state 62
 
 
 state 59
 
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end . LABELMAKER
-    (13) LABELMAKER -> .
+    (32) ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .
 
-    newline         reduce using rule 13 (LABELMAKER -> .)
-    if              reduce using rule 13 (LABELMAKER -> .)
-    while           reduce using rule 13 (LABELMAKER -> .)
-    name            reduce using rule 13 (LABELMAKER -> .)
-    $end            reduce using rule 13 (LABELMAKER -> .)
-    elsif           reduce using rule 13 (LABELMAKER -> .)
-    else            reduce using rule 13 (LABELMAKER -> .)
-    end             reduce using rule 13 (LABELMAKER -> .)
+    newline         reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    if              reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    while           reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    name            reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    $end            reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    elsif           reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    else            reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
+    end             reduce using rule 32 (ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER .)
 
-    LABELMAKER                     shift and go to state 62
 
 state 60
 
-    (16) ELSE -> else BLOCKSTMT .
+    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .
 
-    end             reduce using rule 16 (ELSE -> else BLOCKSTMT .)
+    newline         reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    if              reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    while           reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    name            reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    $end            reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    elsif           reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    else            reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
+    end             reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end .)
 
 
 state 61
 
-    (14) ELSIF -> elsif CONDEXPR then_tok . T BLOCKSTMT LABELMAKER
+    (17) ELSE -> else BLOCKSTMT .
+
+    end             reduce using rule 17 (ELSE -> else BLOCKSTMT .)
+
+
+state 62
+
+    (15) ELSIF -> elsif CONDEXPR then_tok . T BLOCKSTMT LABELMAKER
     (6) T -> . newline
     (7) T -> .
 
@@ -1132,23 +1136,9 @@ state 61
 
     T                              shift and go to state 63
 
-state 62
-
-    (11) SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .
-
-    newline         reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    if              reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    while           reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    name            reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    $end            reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    elsif           reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    else            reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-    end             reduce using rule 11 (SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER .)
-
-
 state 63
 
-    (14) ELSIF -> elsif CONDEXPR then_tok T . BLOCKSTMT LABELMAKER
+    (15) ELSIF -> elsif CONDEXPR then_tok T . BLOCKSTMT LABELMAKER
     (2) BLOCKSTMT -> . STMT newline BLOCKSTMT
     (3) BLOCKSTMT -> . STMT newline
     (4) BLOCKSTMT -> . STMT
@@ -1156,10 +1146,10 @@ state 63
     (8) STMT -> . ASSGN
     (9) STMT -> . SELECT
     (10) STMT -> . ITER
-    (23) ASSGN -> . LHS equals EXPR
-    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
-    (31) ITER -> . while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER
-    (24) LHS -> . name
+    (24) ASSGN -> . LHS equals EXPR
+    (11) SELECT -> . if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end
+    (32) ITER -> . while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
+    (25) LHS -> . name
 
     if              shift and go to state 8
     while           shift and go to state 9
@@ -1174,20 +1164,20 @@ state 63
 
 state 64
 
-    (14) ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT . LABELMAKER
-    (13) LABELMAKER -> .
+    (15) ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT . LABELMAKER
+    (14) LABELMAKER -> .
 
-    else            reduce using rule 13 (LABELMAKER -> .)
-    end             reduce using rule 13 (LABELMAKER -> .)
+    else            reduce using rule 14 (LABELMAKER -> .)
+    end             reduce using rule 14 (LABELMAKER -> .)
 
     LABELMAKER                     shift and go to state 65
 
 state 65
 
-    (14) ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER .
+    (15) ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER .
 
-    else            reduce using rule 14 (ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER .)
-    end             reduce using rule 14 (ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER .)
+    else            reduce using rule 15 (ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER .)
+    end             reduce using rule 15 (ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER .)
 
 WARNING: 
 WARNING: Conflicts:

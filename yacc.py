@@ -8,14 +8,17 @@ precedence = (
     ('left', 'plus', 'minus'),
     ('left', 'times', 'divide'),
 )
+end_label=[]
 queue=[]
 queue_cond=[]
+queue_labels=[]
 temp_counter=0
 label_counter=0
 def p_PROGRAM(p):
 	'''PROGRAM : BLOCKSTMT
 	'''
-	print(p[1])
+	r=open('icg.txt','w')
+	r.write(p[1])
 def p_BLOCKSTMT(p): 
 	'''BLOCKSTMT : STMT newline BLOCKSTMT	
 	| STMT newline
@@ -44,10 +47,17 @@ def p_STMT(p):
 	p[0]=p[1]
 
 def p_SELECT(p):
-	'''SELECT : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER
+	'''SELECT : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end 
 	'''
-	p[0] = p[3]+'ifFalse ' + str(p[2]) +' '+ 'goto' + ' ' +p[7][:-1] +'\n'+ str(p[6])+'\n'+'goto'+ p[12][:-1] + '\n'+ str(p[7]) + str(p[9]) + str(p[10]+'\n'+p[12])
-	#print(p[2])
+	global end_label
+	a=end_label.pop()
+	p[0] = p[3]+'ifFalse ' + str(p[2]) +' '+ 'goto' + ' ' +p[7][:-1] +'\n'+ str(p[6])+'\n'+'goto'+ a + '\n'+ str(p[7]) + str(p[9])+ '\n' + str(p[10])+'\n' + a + ':'	
+	
+def p_LABEL_E(p):
+	'''LABEL_E :'''
+	global label_counter
+	end_label.append('L'+str(label_counter))
+	label_counter+=1
 
 def p_EMPTQC(p):
 	'''EMPTQC :'''
@@ -88,7 +98,7 @@ def p_ELSIF(p):
 			a=queue_cond.pop(0)
 		if(flag):
 			temp2+=a
-	p[0]= temp2+'ifFalse ' + str(p[2])+' goto '+str(p[6][:-1]) + '\n' + str(p[5]) +'\n'+ str(p[6])
+		p[0]= temp2+'ifFalse ' + str(p[2])+' goto '+str(p[6][:-1]) + '\n' + str(p[5]) +'\n' + 'goto '+ end_label[-1] +'\n' +str(p[6])
 
 def p_ELSE(p):
 	'''ELSE : else BLOCKSTMT
@@ -98,6 +108,8 @@ def p_ELSE(p):
 		p[0]=''
 	else:
 		p[0]= str(p[2])
+			
+	
 def p_CONDEXPR(p):
 	'''CONDEXPR : EXPR less EXPR
 	| EXPR equals equals EXPR
@@ -214,9 +226,11 @@ def p_EXPR(p):
 
 
 def p_ITER(p):
-	'''ITER : while LABELMAKER CONDEXPR do  T BLOCKSTMT T end LABELMAKER
+	'''ITER : while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER
 	'''
-	p[0]= str(p[2]) + 'if ' + str(p[3]) + ' goto ' + p[9][:-1] + ' '  + '\n' + str(p[6]) + '\n' + 'goto ' + str(p[2][:-1]) + '\n' + str(p[9])
+	p[0]= str(p[2]) + str(p[4]) + '\n' +'ifFalse ' + p[3] + ' goto ' + p[10][:-1] + '\n' + p[7] + '\n' + 'goto ' + str(p[2][:-1]) + '\n' + p[10]   
+	
+	
 
 logging.basicConfig(
     level = logging.DEBUG,
