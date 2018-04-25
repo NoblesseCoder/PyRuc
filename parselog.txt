@@ -1,351 +1,323 @@
    yacc.py: 360:PLY: PARSE DEBUG START
    yacc.py: 408:
    yacc.py: 409:State  : 0
-   yacc.py: 433:Stack  : . LexToken(if,'if',4,0)
-   yacc.py: 443:Action : Shift and goto state 8
-   yacc.py: 408:
-   yacc.py: 409:State  : 8
-   yacc.py: 433:Stack  : if . LexToken(name,'i',4,3)
-   yacc.py: 443:Action : Shift and goto state 16
-   yacc.py: 408:
-   yacc.py: 409:State  : 16
-   yacc.py: 433:Stack  : if name . LexToken(great,'>',4,5)
-   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['i'] and goto state 15
-   yacc.py: 504:Result : <str @ 0x7fd567267110> ('i')
-   yacc.py: 408:
-   yacc.py: 409:State  : 15
-   yacc.py: 433:Stack  : if EXPR . LexToken(great,'>',4,5)
-   yacc.py: 443:Action : Shift and goto state 24
-   yacc.py: 408:
-   yacc.py: 409:State  : 24
-   yacc.py: 433:Stack  : if EXPR great . LexToken(number,2,4,7)
-   yacc.py: 443:Action : Shift and goto state 17
-   yacc.py: 408:
-   yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : if EXPR great number . LexToken(then_tok,'then',4,9)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [2] and goto state 34
-   yacc.py: 504:Result : <int @ 0x7fd5671239e0> (2)
-   yacc.py: 408:
-   yacc.py: 409:State  : 34
-   yacc.py: 433:Stack  : if EXPR great EXPR . LexToken(then_tok,'then',4,9)
-   yacc.py: 469:Action : Reduce rule [CONDEXPR -> EXPR great EXPR] with ['i','>',2] and goto state 14
-   yacc.py: 504:Result : <str @ 0x7fd564e0dea0> ('i > 2')
-   yacc.py: 408:
-   yacc.py: 409:State  : 14
-   yacc.py: 428:Defaulted state 14: Reduce using 13
-   yacc.py: 433:Stack  : if CONDEXPR . LexToken(then_tok,'then',4,9)
-   yacc.py: 472:Action : Reduce rule [EMPTQC -> <empty>] with [] and goto state 21
-   yacc.py: 546:Result : <str @ 0x7fd56733bab0> ('')
-   yacc.py: 408:
-   yacc.py: 409:State  : 21
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC . LexToken(then_tok,'then',4,9)
-   yacc.py: 443:Action : Shift and goto state 30
-   yacc.py: 408:
-   yacc.py: 409:State  : 30
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok . LexToken(name,'i',4,14)
-   yacc.py: 472:Action : Reduce rule [T -> <empty>] with [] and goto state 41
-   yacc.py: 546:Result : <NoneType @ 0x7fd5670d9cd0> (None)
-   yacc.py: 408:
-   yacc.py: 409:State  : 41
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T . LexToken(name,'i',4,14)
+   yacc.py: 433:Stack  : . LexToken(name,'i',6,0)
    yacc.py: 443:Action : Shift and goto state 10
    yacc.py: 408:
    yacc.py: 409:State  : 10
    yacc.py: 428:Defaulted state 10: Reduce using 25
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T name . None
+   yacc.py: 433:Stack  : name . None
    yacc.py: 469:Action : Reduce rule [LHS -> name] with ['i'] and goto state 7
-   yacc.py: 504:Result : <str @ 0x7fd567267110> ('i')
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
    yacc.py: 408:
    yacc.py: 409:State  : 7
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS . LexToken(equals,'=',4,16)
+   yacc.py: 433:Stack  : LHS . LexToken(equals,'=',6,2)
    yacc.py: 443:Action : Shift and goto state 13
    yacc.py: 408:
    yacc.py: 409:State  : 13
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals . LexToken(name,'i',4,18)
-   yacc.py: 443:Action : Shift and goto state 16
-   yacc.py: 408:
-   yacc.py: 409:State  : 16
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals name . LexToken(plus,'+',4,20)
-   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['i'] and goto state 20
-   yacc.py: 504:Result : <str @ 0x7fd567267110> ('i')
-   yacc.py: 408:
-   yacc.py: 409:State  : 20
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals EXPR . LexToken(plus,'+',4,20)
-   yacc.py: 443:Action : Shift and goto state 25
-   yacc.py: 408:
-   yacc.py: 409:State  : 25
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals EXPR plus . LexToken(number,1,4,22)
+   yacc.py: 433:Stack  : LHS equals . LexToken(number,4,6,4)
    yacc.py: 443:Action : Shift and goto state 17
    yacc.py: 408:
    yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals EXPR plus number . LexToken(end,'end',4,24)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [1] and goto state 36
-   yacc.py: 504:Result : <int @ 0x7fd5671239c0> (1)
-   yacc.py: 408:
-   yacc.py: 409:State  : 36
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals EXPR plus EXPR . LexToken(end,'end',4,24)
-   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['i','+',1] and goto state 20
-   yacc.py: 504:Result : <str @ 0x7fd5654d3e30> ('t0 = i + 1\n')
+   yacc.py: 433:Stack  : LHS equals number . LexToken(newline,'\n',6,5)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [4] and goto state 20
+   yacc.py: 504:Result : <int @ 0x7fb34f2aba20> (4)
    yacc.py: 408:
    yacc.py: 409:State  : 20
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T LHS equals EXPR . LexToken(end,'end',4,24)
-   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with ['i','=','t0 = i + 1\n'] and goto state 4
-   yacc.py: 504:Result : <str @ 0x7fd564e12f60> ('t0 = i + 1\ni = t0 ')
+   yacc.py: 433:Stack  : LHS equals EXPR . LexToken(newline,'\n',6,5)
+   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with ['i','=',4] and goto state 4
+   yacc.py: 504:Result : <str @ 0x7fb34cf96d50> ('i = 4')
    yacc.py: 408:
    yacc.py: 409:State  : 4
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T ASSGN . LexToken(end,'end',4,24)
-   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [<str @ 0x7fd564e12f60>] and goto state 3
-   yacc.py: 504:Result : <str @ 0x7fd564e12f60> ('t0 = i + 1\ni = t0 ')
+   yacc.py: 433:Stack  : ASSGN . LexToken(newline,'\n',6,5)
+   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with ['i = 4'] and goto state 3
+   yacc.py: 504:Result : <str @ 0x7fb34cf96d50> ('i = 4')
    yacc.py: 408:
    yacc.py: 409:State  : 3
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T STMT . LexToken(end,'end',4,24)
-   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT] with [<str @ 0x7fd564e12f60>] and goto state 47
-   yacc.py: 504:Result : <str @ 0x7fd564e12f60> ('t0 = i + 1\ni = t0 ')
-   yacc.py: 408:
-   yacc.py: 409:State  : 47
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T BLOCKSTMT . LexToken(end,'end',4,24)
-   yacc.py: 472:Action : Reduce rule [LABELMAKER -> <empty>] with [] and goto state 49
-   yacc.py: 546:Result : <str @ 0x7fd564e0ded8> ('L0:')
-   yacc.py: 408:
-   yacc.py: 409:State  : 49
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER . LexToken(end,'end',4,24)
-   yacc.py: 472:Action : Reduce rule [LABEL_E -> <empty>] with [] and goto state 51
-   yacc.py: 546:Result : <NoneType @ 0x7fd5670d9cd0> (None)
-   yacc.py: 408:
-   yacc.py: 409:State  : 51
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E . LexToken(end,'end',4,24)
-   yacc.py: 472:Action : Reduce rule [ELSIF -> <empty>] with [] and goto state 53
-   yacc.py: 546:Result : <str @ 0x7fd56733bab0> ('')
-   yacc.py: 408:
-   yacc.py: 409:State  : 53
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF . LexToken(end,'end',4,24)
-   yacc.py: 472:Action : Reduce rule [ELSE -> <empty>] with [] and goto state 56
-   yacc.py: 546:Result : <str @ 0x7fd56733bab0> ('')
-   yacc.py: 408:
-   yacc.py: 409:State  : 56
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE . LexToken(end,'end',4,24)
-   yacc.py: 443:Action : Shift and goto state 60
-   yacc.py: 408:
-   yacc.py: 409:State  : 60
-   yacc.py: 433:Stack  : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end . LexToken(newline,'\n',4,27)
-   yacc.py: 469:Action : Reduce rule [SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end] with ['if','i > 2','','then',None,<str @ 0x7fd564e12f60>,'L0:',None,'','','end'] and goto state 5
-   yacc.py: 504:Result : <str @ 0x7fd564e65500> ('ifFalse i > 2 goto L0\nt0 = i + 1\ni =  ...)
-   yacc.py: 408:
-   yacc.py: 409:State  : 5
-   yacc.py: 433:Stack  : SELECT . LexToken(newline,'\n',4,27)
-   yacc.py: 469:Action : Reduce rule [STMT -> SELECT] with [<str @ 0x7fd564e65500>] and goto state 3
-   yacc.py: 504:Result : <str @ 0x7fd564e65500> ('ifFalse i > 2 goto L0\nt0 = i + 1\ni =  ...)
-   yacc.py: 408:
-   yacc.py: 409:State  : 3
-   yacc.py: 433:Stack  : STMT . LexToken(newline,'\n',4,27)
+   yacc.py: 433:Stack  : STMT . LexToken(newline,'\n',6,5)
    yacc.py: 443:Action : Shift and goto state 11
    yacc.py: 408:
    yacc.py: 409:State  : 11
-   yacc.py: 433:Stack  : STMT newline . LexToken(while,'while',5,28)
-   yacc.py: 443:Action : Shift and goto state 9
+   yacc.py: 433:Stack  : STMT newline . LexToken(if,'if',7,6)
+   yacc.py: 443:Action : Shift and goto state 8
    yacc.py: 408:
-   yacc.py: 409:State  : 9
-   yacc.py: 433:Stack  : STMT newline while . LexToken(name,'k',5,34)
-   yacc.py: 472:Action : Reduce rule [LABELMAKER -> <empty>] with [] and goto state 18
-   yacc.py: 546:Result : <str @ 0x7fd564e0df10> ('L2:')
-   yacc.py: 408:
-   yacc.py: 409:State  : 18
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER . LexToken(name,'k',5,34)
+   yacc.py: 409:State  : 8
+   yacc.py: 433:Stack  : STMT newline if . LexToken(name,'i',7,9)
    yacc.py: 443:Action : Shift and goto state 16
    yacc.py: 408:
    yacc.py: 409:State  : 16
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER name . LexToken(plus,'+',5,36)
-   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['k'] and goto state 15
-   yacc.py: 504:Result : <str @ 0x7fd5672671f0> ('k')
+   yacc.py: 433:Stack  : STMT newline if name . LexToken(great,'>',7,11)
+   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['i'] and goto state 15
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
    yacc.py: 408:
    yacc.py: 409:State  : 15
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR . LexToken(plus,'+',5,36)
-   yacc.py: 443:Action : Shift and goto state 25
-   yacc.py: 408:
-   yacc.py: 409:State  : 25
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus . LexToken(number,2,5,38)
-   yacc.py: 443:Action : Shift and goto state 17
-   yacc.py: 408:
-   yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus number . LexToken(plus,'+',5,40)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [2] and goto state 36
-   yacc.py: 504:Result : <int @ 0x7fd5671239e0> (2)
-   yacc.py: 408:
-   yacc.py: 409:State  : 36
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus EXPR . LexToken(plus,'+',5,40)
-   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['k','+',2] and goto state 15
-   yacc.py: 504:Result : <str @ 0x7fd564e08b30> ('t1 = k + 2\n')
-   yacc.py: 408:
-   yacc.py: 409:State  : 15
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR . LexToken(plus,'+',5,40)
-   yacc.py: 443:Action : Shift and goto state 25
-   yacc.py: 408:
-   yacc.py: 409:State  : 25
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus . LexToken(number,3,5,42)
-   yacc.py: 443:Action : Shift and goto state 17
-   yacc.py: 408:
-   yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus number . LexToken(plus,'+',5,44)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [3] and goto state 36
-   yacc.py: 504:Result : <int @ 0x7fd567123a00> (3)
-   yacc.py: 408:
-   yacc.py: 409:State  : 36
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus EXPR . LexToken(plus,'+',5,44)
-   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['t1 = k + 2\n','+',3] and goto state 15
-   yacc.py: 504:Result : <str @ 0x7fd564e08b70> ('t2 = t1  + 3\n')
-   yacc.py: 408:
-   yacc.py: 409:State  : 15
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR . LexToken(plus,'+',5,44)
-   yacc.py: 443:Action : Shift and goto state 25
-   yacc.py: 408:
-   yacc.py: 409:State  : 25
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus . LexToken(number,4,5,45)
-   yacc.py: 443:Action : Shift and goto state 17
-   yacc.py: 408:
-   yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus number . LexToken(great,'>',5,47)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [4] and goto state 36
-   yacc.py: 504:Result : <int @ 0x7fd567123a20> (4)
-   yacc.py: 408:
-   yacc.py: 409:State  : 36
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR plus EXPR . LexToken(great,'>',5,47)
-   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with [<str @ 0x7fd564e08b70>,'+',4] and goto state 15
-   yacc.py: 504:Result : <str @ 0x7fd564e08bf0> ('t3 = t2  + 4\n')
-   yacc.py: 408:
-   yacc.py: 409:State  : 15
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR . LexToken(great,'>',5,47)
+   yacc.py: 433:Stack  : STMT newline if EXPR . LexToken(great,'>',7,11)
    yacc.py: 443:Action : Shift and goto state 24
    yacc.py: 408:
    yacc.py: 409:State  : 24
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR great . LexToken(number,4,5,49)
+   yacc.py: 433:Stack  : STMT newline if EXPR great . LexToken(number,2,7,13)
    yacc.py: 443:Action : Shift and goto state 17
    yacc.py: 408:
    yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR great number . LexToken(do,'do',5,51)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [4] and goto state 34
-   yacc.py: 504:Result : <int @ 0x7fd567123a20> (4)
+   yacc.py: 433:Stack  : STMT newline if EXPR great number . LexToken(then_tok,'then',7,15)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [2] and goto state 34
+   yacc.py: 504:Result : <int @ 0x7fb34f2ab9e0> (2)
    yacc.py: 408:
    yacc.py: 409:State  : 34
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER EXPR great EXPR . LexToken(do,'do',5,51)
-   yacc.py: 469:Action : Reduce rule [CONDEXPR -> EXPR great EXPR] with [<str @ 0x7fd564e08bf0>,'>',4] and goto state 29
-   yacc.py: 504:Result : <str @ 0x7fd564e0dfb8> ('t3  > 4')
+   yacc.py: 433:Stack  : STMT newline if EXPR great EXPR . LexToken(then_tok,'then',7,15)
+   yacc.py: 469:Action : Reduce rule [CONDEXPR -> EXPR great EXPR] with ['i','>',2] and goto state 14
+   yacc.py: 504:Result : <str @ 0x7fb34cf96e30> ('i > 2')
    yacc.py: 408:
-   yacc.py: 409:State  : 29
-   yacc.py: 428:Defaulted state 29: Reduce using 13
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR . LexToken(do,'do',5,51)
-   yacc.py: 472:Action : Reduce rule [EMPTQC -> <empty>] with [] and goto state 40
-   yacc.py: 546:Result : <str @ 0x7fd564e5be48> ('t1 = k + 2\n\nt2 = t1  + 3\n\nt3 = t2   ...)
+   yacc.py: 409:State  : 14
+   yacc.py: 428:Defaulted state 14: Reduce using 13
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR . LexToken(then_tok,'then',7,15)
+   yacc.py: 472:Action : Reduce rule [EMPTQC -> <empty>] with [] and goto state 21
+   yacc.py: 546:Result : <str @ 0x7fb34f4c3ab0> ('')
    yacc.py: 408:
-   yacc.py: 409:State  : 40
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC . LexToken(do,'do',5,51)
-   yacc.py: 443:Action : Shift and goto state 46
+   yacc.py: 409:State  : 21
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC . LexToken(then_tok,'then',7,15)
+   yacc.py: 443:Action : Shift and goto state 30
    yacc.py: 408:
-   yacc.py: 409:State  : 46
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do . LexToken(name,'y',5,54)
-   yacc.py: 472:Action : Reduce rule [T -> <empty>] with [] and goto state 48
-   yacc.py: 546:Result : <NoneType @ 0x7fd5670d9cd0> (None)
+   yacc.py: 409:State  : 30
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok . LexToken(name,'i',7,20)
+   yacc.py: 472:Action : Reduce rule [T -> <empty>] with [] and goto state 41
+   yacc.py: 546:Result : <NoneType @ 0x7fb34f261cd0> (None)
    yacc.py: 408:
-   yacc.py: 409:State  : 48
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T . LexToken(name,'y',5,54)
+   yacc.py: 409:State  : 41
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T . LexToken(name,'i',7,20)
    yacc.py: 443:Action : Shift and goto state 10
    yacc.py: 408:
    yacc.py: 409:State  : 10
    yacc.py: 428:Defaulted state 10: Reduce using 25
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T name . None
-   yacc.py: 469:Action : Reduce rule [LHS -> name] with ['y'] and goto state 7
-   yacc.py: 504:Result : <str @ 0x7fd5657c35a8> ('y')
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T name . None
+   yacc.py: 469:Action : Reduce rule [LHS -> name] with ['i'] and goto state 7
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
    yacc.py: 408:
    yacc.py: 409:State  : 7
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS . LexToken(equals,'=',5,55)
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS . LexToken(equals,'=',7,21)
    yacc.py: 443:Action : Shift and goto state 13
    yacc.py: 408:
    yacc.py: 409:State  : 13
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals . LexToken(name,'y',5,56)
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals . LexToken(name,'i',7,22)
    yacc.py: 443:Action : Shift and goto state 16
    yacc.py: 408:
    yacc.py: 409:State  : 16
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals name . LexToken(plus,'+',5,57)
-   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['y'] and goto state 20
-   yacc.py: 504:Result : <str @ 0x7fd5657c35a8> ('y')
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals name . LexToken(plus,'+',7,24)
+   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['i'] and goto state 20
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
    yacc.py: 408:
    yacc.py: 409:State  : 20
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals EXPR . LexToken(plus,'+',5,57)
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals EXPR . LexToken(plus,'+',7,24)
    yacc.py: 443:Action : Shift and goto state 25
    yacc.py: 408:
    yacc.py: 409:State  : 25
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals EXPR plus . LexToken(number,1,5,58)
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals EXPR plus . LexToken(number,3,7,26)
    yacc.py: 443:Action : Shift and goto state 17
    yacc.py: 408:
    yacc.py: 409:State  : 17
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals EXPR plus number . LexToken(end,'end',5,60)
-   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [1] and goto state 36
-   yacc.py: 504:Result : <int @ 0x7fd5671239c0> (1)
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals EXPR plus number . LexToken(newline,'\n',7,28)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [3] and goto state 36
+   yacc.py: 504:Result : <int @ 0x7fb34f2aba00> (3)
    yacc.py: 408:
    yacc.py: 409:State  : 36
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals EXPR plus EXPR . LexToken(end,'end',5,60)
-   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['y','+',1] and goto state 20
-   yacc.py: 504:Result : <str @ 0x7fd5654d3e30> ('t4 = y + 1\n')
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals EXPR plus EXPR . LexToken(newline,'\n',7,28)
+   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['i','+',3] and goto state 20
+   yacc.py: 504:Result : <str @ 0x7fb34d035e70> ('t0 = i + 3\n')
    yacc.py: 408:
    yacc.py: 409:State  : 20
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T LHS equals EXPR . LexToken(end,'end',5,60)
-   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with ['y','=','t4 = y + 1\n'] and goto state 4
-   yacc.py: 504:Result : <str @ 0x7fd564e200c0> ('t4 = y + 1\ny = t4 ')
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T LHS equals EXPR . LexToken(newline,'\n',7,28)
+   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with ['i','=','t0 = i + 3\n'] and goto state 4
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3d68> ('t0 = i + 3\ni = t0 ')
    yacc.py: 408:
    yacc.py: 409:State  : 4
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T ASSGN . LexToken(end,'end',5,60)
-   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [<str @ 0x7fd564e200c0>] and goto state 3
-   yacc.py: 504:Result : <str @ 0x7fd564e200c0> ('t4 = y + 1\ny = t4 ')
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T ASSGN . LexToken(newline,'\n',7,28)
+   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [<str @ 0x7fb34cfa3d68>] and goto state 3
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3d68> ('t0 = i + 3\ni = t0 ')
    yacc.py: 408:
    yacc.py: 409:State  : 3
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T STMT . LexToken(end,'end',5,60)
-   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT] with [<str @ 0x7fd564e200c0>] and goto state 50
-   yacc.py: 504:Result : <str @ 0x7fd564e200c0> ('t4 = y + 1\ny = t4 ')
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT . LexToken(newline,'\n',7,28)
+   yacc.py: 443:Action : Shift and goto state 11
    yacc.py: 408:
-   yacc.py: 409:State  : 50
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT . LexToken(end,'end',5,60)
-   yacc.py: 472:Action : Reduce rule [T -> <empty>] with [] and goto state 52
-   yacc.py: 546:Result : <NoneType @ 0x7fd5670d9cd0> (None)
+   yacc.py: 409:State  : 11
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline . LexToken(name,'i',8,29)
+   yacc.py: 443:Action : Shift and goto state 10
    yacc.py: 408:
-   yacc.py: 409:State  : 52
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T . LexToken(end,'end',5,60)
-   yacc.py: 443:Action : Shift and goto state 55
+   yacc.py: 409:State  : 10
+   yacc.py: 428:Defaulted state 10: Reduce using 25
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline name . None
+   yacc.py: 469:Action : Reduce rule [LHS -> name] with ['i'] and goto state 7
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
    yacc.py: 408:
-   yacc.py: 409:State  : 55
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end . LexToken(newline,'\n\n',5,63)
-   yacc.py: 472:Action : Reduce rule [LABELMAKER -> <empty>] with [] and goto state 59
-   yacc.py: 546:Result : <str @ 0x7fd564e1f1f0> ('L3:')
+   yacc.py: 409:State  : 7
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS . LexToken(equals,'=',8,30)
+   yacc.py: 443:Action : Shift and goto state 13
    yacc.py: 408:
-   yacc.py: 409:State  : 59
-   yacc.py: 433:Stack  : STMT newline while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER . LexToken(newline,'\n\n',5,63)
-   yacc.py: 469:Action : Reduce rule [ITER -> while LABELMAKER CONDEXPR EMPTQC do T BLOCKSTMT T end LABELMAKER] with ['while','L2:','t3  > 4',<str @ 0x7fd564e5be48>,'do',None,<str @ 0x7fd564e200c0>,None,'end','L3:'] and goto state 6
-   yacc.py: 504:Result : <str @ 0x7fd5654e3880> ('L2:t1 = k + 2\n\nt2 = t1  + 3\n\nt3 = t ...)
+   yacc.py: 409:State  : 13
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals . LexToken(name,'i',8,31)
+   yacc.py: 443:Action : Shift and goto state 16
    yacc.py: 408:
-   yacc.py: 409:State  : 6
-   yacc.py: 433:Stack  : STMT newline ITER . LexToken(newline,'\n\n',5,63)
-   yacc.py: 469:Action : Reduce rule [STMT -> ITER] with [<str @ 0x7fd5654e3880>] and goto state 3
-   yacc.py: 504:Result : <str @ 0x7fd5654e3880> ('L2:t1 = k + 2\n\nt2 = t1  + 3\n\nt3 = t ...)
+   yacc.py: 409:State  : 16
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals name . LexToken(plus,'+',8,32)
+   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['i'] and goto state 20
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
+   yacc.py: 408:
+   yacc.py: 409:State  : 20
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals EXPR . LexToken(plus,'+',8,32)
+   yacc.py: 443:Action : Shift and goto state 25
+   yacc.py: 408:
+   yacc.py: 409:State  : 25
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals EXPR plus . LexToken(number,4,8,33)
+   yacc.py: 443:Action : Shift and goto state 17
+   yacc.py: 408:
+   yacc.py: 409:State  : 17
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals EXPR plus number . LexToken(newline,'\n',8,35)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [4] and goto state 36
+   yacc.py: 504:Result : <int @ 0x7fb34f2aba20> (4)
+   yacc.py: 408:
+   yacc.py: 409:State  : 36
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals EXPR plus EXPR . LexToken(newline,'\n',8,35)
+   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['i','+',4] and goto state 20
+   yacc.py: 504:Result : <str @ 0x7fb34d0373b0> ('t1 = i + 4\n')
+   yacc.py: 408:
+   yacc.py: 409:State  : 20
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline LHS equals EXPR . LexToken(newline,'\n',8,35)
+   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with ['i','=','t1 = i + 4\n'] and goto state 4
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3e40> ('t1 = i + 4\ni = t1 ')
+   yacc.py: 408:
+   yacc.py: 409:State  : 4
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline ASSGN . LexToken(newline,'\n',8,35)
+   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [<str @ 0x7fb34cfa3e40>] and goto state 3
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3e40> ('t1 = i + 4\ni = t1 ')
    yacc.py: 408:
    yacc.py: 409:State  : 3
-   yacc.py: 433:Stack  : STMT newline STMT . LexToken(newline,'\n\n',5,63)
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT . LexToken(newline,'\n',8,35)
+   yacc.py: 443:Action : Shift and goto state 11
+   yacc.py: 408:
+   yacc.py: 409:State  : 11
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline . LexToken(name,'i',9,36)
+   yacc.py: 443:Action : Shift and goto state 10
+   yacc.py: 408:
+   yacc.py: 409:State  : 10
+   yacc.py: 428:Defaulted state 10: Reduce using 25
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline name . None
+   yacc.py: 469:Action : Reduce rule [LHS -> name] with ['i'] and goto state 7
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
+   yacc.py: 408:
+   yacc.py: 409:State  : 7
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS . LexToken(equals,'=',9,37)
+   yacc.py: 443:Action : Shift and goto state 13
+   yacc.py: 408:
+   yacc.py: 409:State  : 13
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals . LexToken(name,'i',9,38)
+   yacc.py: 443:Action : Shift and goto state 16
+   yacc.py: 408:
+   yacc.py: 409:State  : 16
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals name . LexToken(plus,'+',9,39)
+   yacc.py: 469:Action : Reduce rule [EXPR -> name] with ['i'] and goto state 20
+   yacc.py: 504:Result : <str @ 0x7fb34f3ef110> ('i')
+   yacc.py: 408:
+   yacc.py: 409:State  : 20
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals EXPR . LexToken(plus,'+',9,39)
+   yacc.py: 443:Action : Shift and goto state 25
+   yacc.py: 408:
+   yacc.py: 409:State  : 25
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals EXPR plus . LexToken(number,5,9,40)
+   yacc.py: 443:Action : Shift and goto state 17
+   yacc.py: 408:
+   yacc.py: 409:State  : 17
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals EXPR plus number . LexToken(newline,'\n',9,42)
+   yacc.py: 469:Action : Reduce rule [EXPR -> number] with [5] and goto state 36
+   yacc.py: 504:Result : <int @ 0x7fb34f2aba40> (5)
+   yacc.py: 408:
+   yacc.py: 409:State  : 36
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals EXPR plus EXPR . LexToken(newline,'\n',9,42)
+   yacc.py: 469:Action : Reduce rule [EXPR -> EXPR plus EXPR] with ['i','+',5] and goto state 20
+   yacc.py: 504:Result : <str @ 0x7fb34d035e70> ('t2 = i + 5\n')
+   yacc.py: 408:
+   yacc.py: 409:State  : 20
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline LHS equals EXPR . LexToken(newline,'\n',9,42)
+   yacc.py: 469:Action : Reduce rule [ASSGN -> LHS equals EXPR] with ['i','=','t2 = i + 5\n'] and goto state 4
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3f18> ('t2 = i + 5\ni = t2 ')
+   yacc.py: 408:
+   yacc.py: 409:State  : 4
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline ASSGN . LexToken(newline,'\n',9,42)
+   yacc.py: 469:Action : Reduce rule [STMT -> ASSGN] with [<str @ 0x7fb34cfa3f18>] and goto state 3
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3f18> ('t2 = i + 5\ni = t2 ')
+   yacc.py: 408:
+   yacc.py: 409:State  : 3
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline STMT . LexToken(newline,'\n',9,42)
+   yacc.py: 443:Action : Shift and goto state 11
+   yacc.py: 408:
+   yacc.py: 409:State  : 11
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline STMT newline . LexToken(end,'end',10,43)
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline] with [<str @ 0x7fb34cfa3f18>,'\n'] and goto state 19
+   yacc.py: 504:Result : <str @ 0x7fb34cfa3f18> ('t2 = i + 5\ni = t2 ')
+   yacc.py: 408:
+   yacc.py: 409:State  : 19
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline STMT newline BLOCKSTMT . LexToken(end,'end',10,43)
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline BLOCKSTMT] with [<str @ 0x7fb34cfa3e40>,'\n',<str @ 0x7fb34cfa3f18>] and goto state 19
+   yacc.py: 504:Result : <str @ 0x7fb34cfeee48> ('t1 = i + 4\ni = t1 \nt2 = i + 5\ni = t2 ...)
+   yacc.py: 408:
+   yacc.py: 409:State  : 19
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T STMT newline BLOCKSTMT . LexToken(end,'end',10,43)
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline BLOCKSTMT] with [<str @ 0x7fb34cfa3d68>,'\n',<str @ 0x7fb34cfeee48>] and goto state 47
+   yacc.py: 504:Result : <str @ 0x7fb34cff1490> ('t0 = i + 3\ni = t0 \nt1 = i + 4\ni = t1 ...)
+   yacc.py: 408:
+   yacc.py: 409:State  : 47
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T BLOCKSTMT . LexToken(end,'end',10,43)
+   yacc.py: 472:Action : Reduce rule [LABELMAKER -> <empty>] with [] and goto state 49
+   yacc.py: 546:Result : <str @ 0x7fb34cf96fb8> ('L0:')
+   yacc.py: 408:
+   yacc.py: 409:State  : 49
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER . LexToken(end,'end',10,43)
+   yacc.py: 472:Action : Reduce rule [LABEL_E -> <empty>] with [] and goto state 51
+   yacc.py: 546:Result : <NoneType @ 0x7fb34f261cd0> (None)
+   yacc.py: 408:
+   yacc.py: 409:State  : 51
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E . LexToken(end,'end',10,43)
+   yacc.py: 472:Action : Reduce rule [ELSIF -> <empty>] with [] and goto state 53
+   yacc.py: 546:Result : <str @ 0x7fb34f4c3ab0> ('')
+   yacc.py: 408:
+   yacc.py: 409:State  : 53
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF . LexToken(end,'end',10,43)
+   yacc.py: 472:Action : Reduce rule [ELSE -> <empty>] with [] and goto state 56
+   yacc.py: 546:Result : <str @ 0x7fb34f4c3ab0> ('')
+   yacc.py: 408:
+   yacc.py: 409:State  : 56
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE . LexToken(end,'end',10,43)
+   yacc.py: 443:Action : Shift and goto state 60
+   yacc.py: 408:
+   yacc.py: 409:State  : 60
+   yacc.py: 433:Stack  : STMT newline if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end . LexToken(newline,'\n',10,46)
+   yacc.py: 469:Action : Reduce rule [SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER LABEL_E ELSIF ELSE end] with ['if','i > 2','','then',None,<str @ 0x7fb34cff1490>,'L0:',None,'','','end'] and goto state 5
+   yacc.py: 504:Result : <str @ 0x7fb34d0461e0> ('ifFalse i > 2 goto L0\nt0 = i + 3\ni =  ...)
+   yacc.py: 408:
+   yacc.py: 409:State  : 5
+   yacc.py: 433:Stack  : STMT newline SELECT . LexToken(newline,'\n',10,46)
+   yacc.py: 469:Action : Reduce rule [STMT -> SELECT] with [<str @ 0x7fb34d0461e0>] and goto state 3
+   yacc.py: 504:Result : <str @ 0x7fb34d0461e0> ('ifFalse i > 2 goto L0\nt0 = i + 3\ni =  ...)
+   yacc.py: 408:
+   yacc.py: 409:State  : 3
+   yacc.py: 433:Stack  : STMT newline STMT . LexToken(newline,'\n',10,46)
    yacc.py: 443:Action : Shift and goto state 11
    yacc.py: 408:
    yacc.py: 409:State  : 11
    yacc.py: 433:Stack  : STMT newline STMT newline . $end
-   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline] with [<str @ 0x7fd5654e3880>,'\n\n'] and goto state 19
-   yacc.py: 504:Result : <str @ 0x7fd5654e3880> ('L2:t1 = k + 2\n\nt2 = t1  + 3\n\nt3 = t ...)
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline] with [<str @ 0x7fb34d0461e0>,'\n'] and goto state 19
+   yacc.py: 504:Result : <str @ 0x7fb34d0461e0> ('ifFalse i > 2 goto L0\nt0 = i + 3\ni =  ...)
    yacc.py: 408:
    yacc.py: 409:State  : 19
    yacc.py: 433:Stack  : STMT newline BLOCKSTMT . $end
-   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline BLOCKSTMT] with [<str @ 0x7fd564e65500>,'\n',<str @ 0x7fd5654e3880>] and goto state 2
-   yacc.py: 504:Result : <str @ 0x7fd5654dc850> ('ifFalse i > 2 goto L0\nt0 = i + 1\ni =  ...)
+   yacc.py: 469:Action : Reduce rule [BLOCKSTMT -> STMT newline BLOCKSTMT] with ['i = 4','\n',<str @ 0x7fb34d0461e0>] and goto state 2
+   yacc.py: 504:Result : <str @ 0x7fb34d045620> ('i = 4\nifFalse i > 2 goto L0\nt0 = i +  ...)
    yacc.py: 408:
    yacc.py: 409:State  : 2
    yacc.py: 428:Defaulted state 2: Reduce using 1
    yacc.py: 433:Stack  : BLOCKSTMT . $end
-   yacc.py: 469:Action : Reduce rule [PROGRAM -> BLOCKSTMT] with [<str @ 0x7fd5654dc850>] and goto state 1
-   yacc.py: 504:Result : <NoneType @ 0x7fd5670d9cd0> (None)
+   yacc.py: 469:Action : Reduce rule [PROGRAM -> BLOCKSTMT] with [<str @ 0x7fb34d045620>] and goto state 1
+   yacc.py: 504:Result : <NoneType @ 0x7fb34f261cd0> (None)
    yacc.py: 408:
    yacc.py: 409:State  : 1
    yacc.py: 433:Stack  : PROGRAM . $end
-   yacc.py: 569:Done   : Returning <NoneType @ 0x7fd5670d9cd0> (None)
+   yacc.py: 569:Done   : Returning <NoneType @ 0x7fb34f261cd0> (None)
    yacc.py: 570:PLY: PARSE DEBUG END

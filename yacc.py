@@ -3,7 +3,7 @@ from Lexical_Analyzer import tokens
 import Lexical_Analyzer
 import logging
 import AST
-
+from Lexical_Analyzer import symbol_table
 precedence = (
     ('left', 'plus', 'minus'),
     ('left', 'times', 'divide'),
@@ -51,7 +51,7 @@ def p_SELECT(p):
 	'''
 	global end_label
 	a=end_label.pop()
-	p[0] = p[3]+'ifFalse ' + str(p[2]) +' '+ 'goto' + ' ' +p[7][:-1] +'\n'+ str(p[6])+'\n'+'goto'+ a + '\n'+ str(p[7]) + str(p[9])+ '\n' + str(p[10])+'\n' + a + ':'	
+	p[0] = p[3]+'ifFalse ' + str(p[2]) +' '+ 'goto' + ' ' +p[7][:-1] +'\n'+ str(p[6])+'\n'+'goto '+ a + '\n'+ str(p[7]) + str(p[9])+ '\n' + str(p[10])+'\n' + a + ':'	
 	
 def p_LABEL_E(p):
 	'''LABEL_E :'''
@@ -174,13 +174,20 @@ def p_ASSGN(p):
 			temp2+=a +'\n'
 			a=queue.pop(0)
 		temp2+=a
+	try:
+		a=int(p[3])
+		symbol_table[p[1]]=a
+		#print('symbol table updated')
+		#print(symbol_table)
+	except:
+		pass
 	p[0]=temp2 + str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3])
 
 def p_LHS(p):
 	'''LHS : name
 	'''
 	p[0]=p[1]
-
+	#print(p[1])
 def p_EXPR(p):
 	'''EXPR : EXPR plus EXPR
 	| EXPR minus EXPR
@@ -218,6 +225,11 @@ def p_EXPR(p):
 		p[0]='t'+str(temp_counter)+' = '+str(p[1])+' '+str(p[2])+' '+str(p[3]) + '\n'
 		temp_counter+=1
 	elif(len(p)==2): #check in symbol table here
+		try:
+			int(p[1])
+		except ValueError:
+			if(symbol_table[p[1]]==None):
+				raise ValueError("Variable "+ str(p[1])+ ' has not been defined')
 		p[0]=p[1]
 	
 
@@ -257,4 +269,4 @@ if result is not None:
 
 
 
-print(Lexical_Analyzer.symbol_table)
+#print(Lexical_Analyzer.symbol_table)

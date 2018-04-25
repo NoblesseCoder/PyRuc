@@ -129,6 +129,7 @@ def get_tokens(data):
 	#Returns list of tokens including metadata
 	lexer.input(data) # using lexer
 	tokens={}
+	#symbol_table={}
 	while(True):
 		tok=lexer.token()	
 		if not tok:		
@@ -139,43 +140,13 @@ def get_tokens(data):
 	
 	d={"BEGIN":'k',"END":'k',"alias":'k',"and":'k',"begin":'k' , "break" :'k',"case":'k',"class":'k',"def":'k',"defined":'k',"do":'k',"else":'k',"elsif":'k',"end":'k',"ensure":'k',"false":'k',"for":'k',"if":'k',"in":'k',"module":'k',"next":'k',"nil":'k',"not":'k',"or":'k',"redo":'k',"rescue":'k',"retry":'k',"return":'k',"self":'k',"super":'k',"then":'k',"true":'k',"unless":'k',"until":'k',"when":'k',"yield":'k',"__FILE__":'k','__LINE__' :'k' ,"__ENCODING__" :'k',-1:1}
 	#d={-1:1}	
-	ele=0
-	block_no=1
-	temp={}
-	parent=0
-	blocks=[]
 	for j in tokens.values():
 		for k in j:
-			if((k[0] in ['begin','case','class','def','do','else','elsif','for','then','unless','until'])):
-				temp={-1:parent}
-				d['block'+str(block_no)]=temp
-				#if(ele!=0):
-				#	temp['par_0']=block_no
-				block_no+=1
-				parent=block_no
-				blocks.append(temp)
-				ele+=1
-			if((k[0] in ['end','return','yield'])):
-				ele-=1
-				#if(ele!=0):
-				#	temp=parent
-				try:
-					parent=temp[-1]-1
-				except: 
-					pass
-				#print(parent)
-				if(parent<=0):
-					temp=d
-				else:
-					temp=d['block'+str(parent)]
-				#print(temp)
-			if(k[0]=='NAME' and ele!=0):
-				temp[k[1]]=0
-			elif(k[0]=='NAME'):
-				d[k[1]]=0
-
+			if 'name' in k[0]:
+				d[k[1]]=None	
 
 	#print(d)
+	#print(symbol_table)
 	return tokens,d		
 
 
