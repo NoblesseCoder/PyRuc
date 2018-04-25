@@ -5,9 +5,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftplusminuslefttimesdividewhile number plus minus times divide equals lparen logic logicnot rparen comment keywords append string builtinmethod range great rsquare lsquare newline lflower rflower less begin break else end for if true false return then_tok elsif in do quotes dollar commas bar nameBLOCKSTMT : STMT newline BLOCKSTMT\n\t| STMT BLOCKSTMT\t\n\t| STMT newline\n\t| STMT\n\tSTMT : ASSGN\n\t| SELECT\n\t| ITER\n\tSELECT : if EXPR then_tok BLOCKSTMT ELSIF ELSE end\n\tELSIF : elsif EXPR then_tok BLOCKSTMT\n\t|\n\tELSE : else BLOCKSTMT\n\t|\n\tASSGN : LHS equals EXPR\n\tLHS : name\n\tEXPR : EXPR plus EXPR\n\t| EXPR minus EXPR\n\t| EXPR times EXPR\n\t| EXPR divide EXPR\n\t| EXPR less EXPR\n\t| EXPR equals equals EXPR\n\t| EXPR great EXPR\n\t| EXPR great equals EXPR\n\t| EXPR less equals EXPR\n\t| name\n\t| number\n\tITER : while EXPR do BLOCKSTMT end\n\t'
+_lr_signature = 'leftplusminuslefttimesdividewhile number plus minus times divide equals lparen logic logicnot rparen comment keywords append string builtinmethod range great rsquare lsquare newline lflower rflower less begin break else end for if true false return then_tok elsif in do quotes dollar commas bar namePROGRAM : BLOCKSTMT\n\tBLOCKSTMT : STMT newline BLOCKSTMT\t\n\t| STMT newline\n\t| STMT\n\t| STMT BLOCKSTMT\n\tT : newline\n\t|\n\tSTMT : ASSGN\n\t| SELECT\n\t| ITER\n\tSELECT : if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER\n\tEMPTQC :LABELMAKER :ELSIF : elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER\n\t|\n\tELSE : else BLOCKSTMT\n\t|\n\tCONDEXPR : EXPR less EXPR\n\t| EXPR equals equals EXPR\n\t| EXPR great EXPR\n\t| EXPR great equals EXPR\n\t| EXPR less equals EXPR\n\tASSGN : LHS equals EXPR\n\tLHS : name\n\tEXPR : EXPR plus EXPR\n\t| EXPR minus EXPR\n\t| EXPR times EXPR\n\t| EXPR divide EXPR\n\t| name\n\t| number\n\tITER : while LABELMAKER CONDEXPR do  T BLOCKSTMT T end LABELMAKER\n\t'
     
-_lr_action_items = {'if':([0,2,3,4,5,10,14,15,18,19,27,29,30,31,32,33,36,41,42,43,44,46,48,50,],[7,7,-5,-6,-7,7,-24,-25,-13,7,7,-15,-16,-17,-18,-19,-21,-23,-20,-22,-26,7,-8,7,]),'while':([0,2,3,4,5,10,14,15,18,19,27,29,30,31,32,33,36,41,42,43,44,46,48,50,],[8,8,-5,-6,-7,8,-24,-25,-13,8,8,-15,-16,-17,-18,-19,-21,-23,-20,-22,-26,8,-8,8,]),'name':([0,2,3,4,5,7,8,10,12,14,15,18,19,20,21,22,23,24,26,27,29,30,31,32,33,34,35,36,37,40,41,42,43,44,46,48,50,],[9,9,-5,-6,-7,14,14,9,14,-24,-25,-13,9,14,14,14,14,14,14,9,-15,-16,-17,-18,-19,14,14,-21,14,14,-23,-20,-22,-26,9,-8,9,]),'$end':([1,2,3,4,5,10,11,14,15,17,18,29,30,31,32,33,36,41,42,43,44,48,],[0,-4,-5,-6,-7,-3,-2,-24,-25,-1,-13,-15,-16,-17,-18,-19,-21,-23,-20,-22,-26,-8,]),'newline':([2,3,4,5,14,15,18,29,30,31,32,33,36,41,42,43,44,48,],[10,-5,-6,-7,-24,-25,-13,-15,-16,-17,-18,-19,-21,-23,-20,-22,-26,-8,]),'elsif':([2,3,4,5,10,11,14,15,17,18,28,29,30,31,32,33,36,41,42,43,44,48,],[-4,-5,-6,-7,-3,-2,-24,-25,-1,-13,40,-15,-16,-17,-18,-19,-21,-23,-20,-22,-26,-8,]),'else':([2,3,4,5,10,11,14,15,17,18,28,29,30,31,32,33,36,39,41,42,43,44,48,51,],[-4,-5,-6,-7,-3,-2,-24,-25,-1,-13,-10,-15,-16,-17,-18,-19,-21,46,-23,-20,-22,-26,-8,-9,]),'end':([2,3,4,5,10,11,14,15,17,18,28,29,30,31,32,33,36,38,39,41,42,43,44,45,48,49,51,],[-4,-5,-6,-7,-3,-2,-24,-25,-1,-13,-10,-15,-16,-17,-18,-19,-21,44,-12,-23,-20,-22,-26,48,-8,-11,-9,]),'equals':([6,9,13,14,15,16,18,24,25,26,29,30,31,32,33,36,41,42,43,47,],[12,-14,25,-24,-25,25,25,34,35,37,-15,-16,-17,-18,25,25,25,25,25,25,]),'number':([7,8,12,20,21,22,23,24,26,34,35,37,40,],[15,15,15,15,15,15,15,15,15,15,15,15,15,]),'then_tok':([13,14,15,29,30,31,32,33,36,41,42,43,47,],[19,-24,-25,-15,-16,-17,-18,-19,-21,-23,-20,-22,50,]),'plus':([13,14,15,16,18,29,30,31,32,33,36,41,42,43,47,],[20,-24,-25,20,20,-15,-16,-17,-18,20,20,20,20,20,20,]),'minus':([13,14,15,16,18,29,30,31,32,33,36,41,42,43,47,],[21,-24,-25,21,21,-15,-16,-17,-18,21,21,21,21,21,21,]),'times':([13,14,15,16,18,29,30,31,32,33,36,41,42,43,47,],[22,-24,-25,22,22,22,22,-17,-18,22,22,22,22,22,22,]),'divide':([13,14,15,16,18,29,30,31,32,33,36,41,42,43,47,],[23,-24,-25,23,23,23,23,-17,-18,23,23,23,23,23,23,]),'less':([13,14,15,16,18,29,30,31,32,33,36,41,42,43,47,],[24,-24,-25,24,24,-15,-16,-17,-18,24,24,24,24,24,24,]),'great':([13,14,15,16,18,29,30,31,32,33,36,41,42,43,47,],[26,-24,-25,26,26,-15,-16,-17,-18,26,26,26,26,26,26,]),'do':([14,15,16,29,30,31,32,33,36,41,42,43,],[-24,-25,27,-15,-16,-17,-18,-19,-21,-23,-20,-22,]),}
+_lr_action_items = {'if':([0,3,4,5,6,11,16,17,20,30,36,37,38,39,40,41,42,46,52,55,57,59,61,62,63,],[8,8,-8,-9,-10,8,-29,-30,-23,-7,-25,-26,-27,-28,-7,8,-6,8,-13,-31,8,-13,-7,-11,8,]),'while':([0,3,4,5,6,11,16,17,20,30,36,37,38,39,40,41,42,46,52,55,57,59,61,62,63,],[9,9,-8,-9,-10,9,-29,-30,-23,-7,-25,-26,-27,-28,-7,9,-6,9,-13,-31,9,-13,-7,-11,9,]),'name':([0,3,4,5,6,8,9,11,13,16,17,18,20,22,24,25,26,27,28,30,32,33,35,36,37,38,39,40,41,42,46,52,54,55,57,59,61,62,63,],[10,10,-8,-9,-10,16,-13,10,16,-29,-30,16,-23,16,16,16,16,16,16,-7,16,16,16,-25,-26,-27,-28,-7,10,-6,10,-13,16,-31,10,-13,-7,-11,10,]),'$end':([1,2,3,4,5,6,11,12,16,17,19,20,36,37,38,39,52,55,59,62,],[0,-1,-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-13,-31,-13,-11,]),'newline':([3,4,5,6,11,12,16,17,19,20,30,36,37,38,39,40,47,48,49,52,55,59,61,62,],[11,-8,-9,-10,-3,-5,-29,-30,-2,-23,42,-25,-26,-27,-28,42,-13,42,42,-13,-31,-13,42,-11,]),'elsif':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,49,51,52,55,59,62,],[-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-6,-13,-7,54,-13,-31,-13,-11,]),'else':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,49,51,52,53,55,59,62,64,65,],[-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-6,-13,-7,-15,-13,57,-31,-13,-11,-13,-14,]),'end':([3,4,5,6,11,12,16,17,19,20,36,37,38,39,42,47,48,49,50,51,52,53,55,56,59,60,62,64,65,],[-4,-8,-9,-10,-3,-5,-29,-30,-2,-23,-25,-26,-27,-28,-6,-13,-7,-7,52,-15,-13,-17,-31,59,-13,-16,-11,-13,-14,]),'equals':([7,10,15,16,17,22,23,24,36,37,38,39,],[13,-24,23,-29,-30,32,33,35,-25,-26,-27,-28,]),'number':([8,9,13,18,22,24,25,26,27,28,32,33,35,54,],[17,-13,17,17,17,17,17,17,17,17,17,17,17,17,]),'then_tok':([14,16,17,21,31,34,36,37,38,39,43,44,45,58,],[-12,-29,-30,30,-18,-20,-25,-26,-27,-28,-22,-19,-21,61,]),'less':([15,16,17,36,37,38,39,],[22,-29,-30,-25,-26,-27,-28,]),'great':([15,16,17,36,37,38,39,],[24,-29,-30,-25,-26,-27,-28,]),'plus':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[25,-29,-30,25,25,25,-25,-26,-27,-28,25,25,25,]),'minus':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[26,-29,-30,26,26,26,-25,-26,-27,-28,26,26,26,]),'times':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[27,-29,-30,27,27,27,27,27,-27,-28,27,27,27,]),'divide':([15,16,17,20,31,34,36,37,38,39,43,44,45,],[28,-29,-30,28,28,28,28,28,-27,-28,28,28,28,]),'do':([16,17,29,31,34,36,37,38,39,43,44,45,],[-29,-30,40,-18,-20,-25,-26,-27,-28,-22,-19,-21,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'BLOCKSTMT':([0,2,10,19,27,46,50,],[1,11,17,28,38,49,51,]),'STMT':([0,2,10,19,27,46,50,],[2,2,2,2,2,2,2,]),'ASSGN':([0,2,10,19,27,46,50,],[3,3,3,3,3,3,3,]),'SELECT':([0,2,10,19,27,46,50,],[4,4,4,4,4,4,4,]),'ITER':([0,2,10,19,27,46,50,],[5,5,5,5,5,5,5,]),'LHS':([0,2,10,19,27,46,50,],[6,6,6,6,6,6,6,]),'EXPR':([7,8,12,20,21,22,23,24,26,34,35,37,40,],[13,16,18,29,30,31,32,33,36,41,42,43,47,]),'ELSIF':([28,],[39,]),'ELSE':([39,],[45,]),}
+_lr_goto_items = {'PROGRAM':([0,],[1,]),'BLOCKSTMT':([0,3,11,41,46,57,63,],[2,12,19,47,48,60,64,]),'STMT':([0,3,11,41,46,57,63,],[3,3,3,3,3,3,3,]),'ASSGN':([0,3,11,41,46,57,63,],[4,4,4,4,4,4,4,]),'SELECT':([0,3,11,41,46,57,63,],[5,5,5,5,5,5,5,]),'ITER':([0,3,11,41,46,57,63,],[6,6,6,6,6,6,6,]),'LHS':([0,3,11,41,46,57,63,],[7,7,7,7,7,7,7,]),'CONDEXPR':([8,18,54,],[14,29,58,]),'EXPR':([8,13,18,22,24,25,26,27,28,32,33,35,54,],[15,20,15,31,34,36,37,38,39,43,44,45,15,]),'LABELMAKER':([9,47,52,59,64,],[18,49,55,62,65,]),'EMPTQC':([14,],[21,]),'T':([30,40,48,49,61,],[41,46,50,51,63,]),'ELSIF':([51,],[53,]),'ELSE':([53,],[56,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -25,31 +25,36 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> BLOCKSTMT","S'",1,None,None,None),
-  ('BLOCKSTMT -> STMT newline BLOCKSTMT','BLOCKSTMT',3,'p_BLOCKSTMT','yacc.py',10),
-  ('BLOCKSTMT -> STMT BLOCKSTMT','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',11),
-  ('BLOCKSTMT -> STMT newline','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',12),
-  ('BLOCKSTMT -> STMT','BLOCKSTMT',1,'p_BLOCKSTMT','yacc.py',13),
-  ('STMT -> ASSGN','STMT',1,'p_STMT','yacc.py',16),
-  ('STMT -> SELECT','STMT',1,'p_STMT','yacc.py',17),
-  ('STMT -> ITER','STMT',1,'p_STMT','yacc.py',18),
-  ('SELECT -> if EXPR then_tok BLOCKSTMT ELSIF ELSE end','SELECT',7,'p_SELECT','yacc.py',21),
-  ('ELSIF -> elsif EXPR then_tok BLOCKSTMT','ELSIF',4,'p_ELSIF','yacc.py',25),
-  ('ELSIF -> <empty>','ELSIF',0,'p_ELSIF','yacc.py',26),
-  ('ELSE -> else BLOCKSTMT','ELSE',2,'p_ELSE','yacc.py',29),
-  ('ELSE -> <empty>','ELSE',0,'p_ELSE','yacc.py',30),
-  ('ASSGN -> LHS equals EXPR','ASSGN',3,'p_ASSGN','yacc.py',33),
-  ('LHS -> name','LHS',1,'p_LHS','yacc.py',37),
-  ('EXPR -> EXPR plus EXPR','EXPR',3,'p_EXPR','yacc.py',41),
-  ('EXPR -> EXPR minus EXPR','EXPR',3,'p_EXPR','yacc.py',42),
-  ('EXPR -> EXPR times EXPR','EXPR',3,'p_EXPR','yacc.py',43),
-  ('EXPR -> EXPR divide EXPR','EXPR',3,'p_EXPR','yacc.py',44),
-  ('EXPR -> EXPR less EXPR','EXPR',3,'p_EXPR','yacc.py',45),
-  ('EXPR -> EXPR equals equals EXPR','EXPR',4,'p_EXPR','yacc.py',46),
-  ('EXPR -> EXPR great EXPR','EXPR',3,'p_EXPR','yacc.py',47),
-  ('EXPR -> EXPR great equals EXPR','EXPR',4,'p_EXPR','yacc.py',48),
-  ('EXPR -> EXPR less equals EXPR','EXPR',4,'p_EXPR','yacc.py',49),
-  ('EXPR -> name','EXPR',1,'p_EXPR','yacc.py',50),
-  ('EXPR -> number','EXPR',1,'p_EXPR','yacc.py',51),
-  ('ITER -> while EXPR do BLOCKSTMT end','ITER',5,'p_ITER','yacc.py',54),
+  ("S' -> PROGRAM","S'",1,None,None,None),
+  ('PROGRAM -> BLOCKSTMT','PROGRAM',1,'p_PROGRAM','yacc.py',16),
+  ('BLOCKSTMT -> STMT newline BLOCKSTMT','BLOCKSTMT',3,'p_BLOCKSTMT','yacc.py',20),
+  ('BLOCKSTMT -> STMT newline','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',21),
+  ('BLOCKSTMT -> STMT','BLOCKSTMT',1,'p_BLOCKSTMT','yacc.py',22),
+  ('BLOCKSTMT -> STMT BLOCKSTMT','BLOCKSTMT',2,'p_BLOCKSTMT','yacc.py',23),
+  ('T -> newline','T',1,'p_T','yacc.py',33),
+  ('T -> <empty>','T',0,'p_T','yacc.py',34),
+  ('STMT -> ASSGN','STMT',1,'p_STMT','yacc.py',37),
+  ('STMT -> SELECT','STMT',1,'p_STMT','yacc.py',38),
+  ('STMT -> ITER','STMT',1,'p_STMT','yacc.py',39),
+  ('SELECT -> if CONDEXPR EMPTQC then_tok T BLOCKSTMT LABELMAKER T ELSIF ELSE end LABELMAKER','SELECT',12,'p_SELECT','yacc.py',44),
+  ('EMPTQC -> <empty>','EMPTQC',0,'p_EMPTQC','yacc.py',50),
+  ('LABELMAKER -> <empty>','LABELMAKER',0,'p_LABELMAKER','yacc.py',65),
+  ('ELSIF -> elsif CONDEXPR then_tok T BLOCKSTMT LABELMAKER','ELSIF',6,'p_ELSIF','yacc.py',71),
+  ('ELSIF -> <empty>','ELSIF',0,'p_ELSIF','yacc.py',72),
+  ('ELSE -> else BLOCKSTMT','ELSE',2,'p_ELSE','yacc.py',91),
+  ('ELSE -> <empty>','ELSE',0,'p_ELSE','yacc.py',92),
+  ('CONDEXPR -> EXPR less EXPR','CONDEXPR',3,'p_CONDEXPR','yacc.py',99),
+  ('CONDEXPR -> EXPR equals equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',100),
+  ('CONDEXPR -> EXPR great EXPR','CONDEXPR',3,'p_CONDEXPR','yacc.py',101),
+  ('CONDEXPR -> EXPR great equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',102),
+  ('CONDEXPR -> EXPR less equals EXPR','CONDEXPR',4,'p_CONDEXPR','yacc.py',103),
+  ('ASSGN -> LHS equals EXPR','ASSGN',3,'p_ASSGN','yacc.py',141),
+  ('LHS -> name','LHS',1,'p_LHS','yacc.py',165),
+  ('EXPR -> EXPR plus EXPR','EXPR',3,'p_EXPR','yacc.py',170),
+  ('EXPR -> EXPR minus EXPR','EXPR',3,'p_EXPR','yacc.py',171),
+  ('EXPR -> EXPR times EXPR','EXPR',3,'p_EXPR','yacc.py',172),
+  ('EXPR -> EXPR divide EXPR','EXPR',3,'p_EXPR','yacc.py',173),
+  ('EXPR -> name','EXPR',1,'p_EXPR','yacc.py',174),
+  ('EXPR -> number','EXPR',1,'p_EXPR','yacc.py',175),
+  ('ITER -> while LABELMAKER CONDEXPR do T BLOCKSTMT T end LABELMAKER','ITER',9,'p_ITER','yacc.py',214),
 ]
