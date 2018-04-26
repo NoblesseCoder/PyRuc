@@ -1,13 +1,18 @@
 import ply.yacc as yacc
-from Lexical_Analyzer import tokens
-import Lexical_Analyzer
 import logging
-import AST
-from Lexical_Analyzer import symbol_table
+from lexer import LA
+from lexer import symbol_table
+import lexer
+tokens=LA.tokens
+
+#Precedence rules for parsing
 precedence = (
     ('left', 'plus', 'minus'),
     ('left', 'times', 'divide'),
 )
+
+#Grammar for language(Assignment,Selection & loop)
+
 end_label=[]
 queue=[]
 queue_cond=[]
@@ -20,23 +25,26 @@ def p_PROGRAM(p):
 	r=open('icg.txt','w')
 	r.write(p[1])
 def p_BLOCKSTMT(p): 
-	'''BLOCKSTMT : STMT newline BLOCKSTMT	
-	| STMT newline
-	| STMT
-	| STMT BLOCKSTMT
+	'''BLOCKSTMT : T STMT T BLOCKSTMT	
+	| T STMT T 
 	'''
-	if(len(p)==4):
-		p[0]=p[1] + '\n' + p[3]
-	elif(len(p)==3):
+	if(len(p)==5):
+		if(p[2] is None):
+			p[2]=''
+		if(p[4] is None):
+			p[4]=''		
+		p[0]=p[2] + '\n' + p[4]
+
+	elif(len(p)==4):
+		if(p[2] is None):
+			p[2]=''
 		if('\n' in p[2]):
-			p[0]=p[1]
+			p[0]=p[2]
 		else:
-			p[0]=p[1] + '\n' + p[2]
-	else:
-		p[0]=p[1]
+			p[0]=p[2]
 
 def p_T(p):
-	'''T : newline
+	'''T : T newline
 	|
 	'''
 def p_STMT(p):
@@ -117,41 +125,43 @@ def p_CONDEXPR(p):
 	| EXPR great equals EXPR
 	| EXPR less equals EXPR
 	'''	
-	flag=False
-	if(len(queue)!=0):
-		a=queue.pop(0)
-		flag=True
-	while(len(queue)!=0):
-		queue_cond.append(a)
-		a=queue.pop(0)
-	if(flag):
-		queue_cond.append(a)
-	#print(p[1],"hello")
-	if(('=' in str(p[1])) or ('=' in str(p[3]))):
-		temp1=''
+	if(len(p)==4):
+		flag=False
+		if(len(queue)!=0):
+			a=queue.pop(0)
+			flag=True
+		while(len(queue)!=0):
+			queue_cond.append(a)
+			a=queue.pop(0)
+		if(flag):
+			queue_cond.append(a)
 		#print(p[1],"hello")
-		if('=' in str(p[1])):
-			i=''	
-			for i in str(p[1]):
-				if '=' not in i:
-					temp1+=i
-				else:
-					break
-			queue_cond.append(p[1])				
-			p[1]=temp1
+		if(('=' in str(p[1])) or ('=' in str(p[3]))):
+			temp1=''
 			#print(p[1],"hello")
-		temp2=''
-		if('=' in str(p[3])):
-			i=''
-			for i in str(p[3]):
-				if '=' not in i:
-					temp2+=i
-				else:
-					break
-			queue_cond.appen(p[3])				
-			p[3]=temp2	
-			#print(p[1],p[3])
-	p[0] = str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3])
+			if('=' in str(p[1])):
+				i=''	
+				for i in str(p[1]):
+					if '=' not in i:
+						temp1+=i
+					else:
+						break
+				queue_cond.append(p[1])				
+				p[1]=temp1
+				#print(p[1],"hello")
+			temp2=''
+			if('=' in str(p[3])):
+				i=''
+				for i in str(p[3]):
+					if '=' not in i:
+						temp2+=i
+					else:
+						break
+				queue_cond.append(p[3])				
+				p[3]=temp2	
+				#print(p[1],p[3])
+		p[0] = str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3])
+		
 def p_ASSGN(p):
 	'''ASSGN : LHS equals EXPR
 	'''
@@ -219,7 +229,7 @@ def p_EXPR(p):
 						temp2+=i
 					else:
 						break
-				queue.appen(p[3])				
+				queue.append(p[3])				
 				p[3]=temp2	
 			#print(p[1],p[3])
 		p[0]='t'+str(temp_counter)+' = '+str(p[1])+' '+str(p[2])+' '+str(p[3]) + '\n'
@@ -258,7 +268,7 @@ log = logging.getLogger()
 # Build the parser
 parser = yacc.yacc()
 
-s = open('ruby_test.rb','r').read()
+s = open('test.rb','r').read()
 
 result = parser.parse(s,debug=log)
 #print(log)
@@ -268,5 +278,3 @@ if result is not None:
 
 
 
-
-#print(Lexical_Analyzer.symbol_table)

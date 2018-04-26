@@ -62,53 +62,9 @@ for i in b:
 			k=k[0] + ' = ' + k[1]
 		result+=k+'\n'
 	else:
-		result+=i
-		
-result=io.StringIO(result)
-b=result.readlines()			
+		result+=i		
+			
 #print(b)
-update_table={}
-result=''
-for i in b:
-	if '=' in i and '<' not in i and '>' not in i and '==' not in i: #only assignment
-		k=copy.deepcopy(i)	
-		k=k.split('=')
-		try:
-			k[0]=k[0].replace(" ",'')
-			a=int(k[1])
-			if k[0] in update_table.keys():
-				update_table[k[0]]=a
-			else:
-				update_table[k[0]]=a
-		except:
-			update_table[k[0]]=None			
-			temp=copy.deepcopy(i)
-			temp=temp.replace('\n','')
-			temp=temp.split(' ')
-			print(temp)
-			for j in update_table.keys():
-				for k in range(len(temp)):
-					if j == temp[k] and update_table[j]!=None:
-						temp[k]=update_table[j]
-			for j in temp:
-				if j != '\n':
-					result+=str(j) + ' '
-				else:
-					result+='\n'
-					break
-	else:
-		temp=copy.deepcopy(i)
-		temp=temp.split(' ')
-		for j in update_table.keys():
-			for k in range(len(temp)):
-				if j == temp[k] and update_table[j]!=None:
-					temp[k]=update_table[j]
-		for j in temp:
-			if j != '\n':
-				result+=str(j) + ' '
-			else:
-				result+='\n'
-				break
-
 fileout.write(result)		
 #print(b)
+
