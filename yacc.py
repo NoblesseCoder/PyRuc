@@ -180,7 +180,7 @@ def p_ASSGN(p):
 		#print('symbol table updated')
 		#print(symbol_table)
 	except:
-		pass
+		symbol_table[str(p[1])]='defined'
 	p[0]=temp2 + str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3])
 
 def p_LHS(p):
