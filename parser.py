@@ -161,7 +161,45 @@ def p_CONDEXPR(p):
 				p[3]=temp2	
 				#print(p[1],p[3])
 		p[0] = str(p[1]) + ' ' + str(p[2]) + ' ' + str(p[3])
+
+	else:
+		flag=False
+		if(len(queue)!=0):
+			a=queue.pop(0)
+			flag=True
+		while(len(queue)!=0):
+			queue_cond.append(a)
+			a=queue.pop(0)
+		if(flag):
+			queue_cond.append(a)
+	#print(p[1],"hello")
+		if(('=' in str(p[1])) or ('=' in str(p[3]))):
+			temp1=''
+		#print(p[1],"hello")
+			if('=' in str(p[1])):
+				i=''	
+				for i in str(p[1]):
+					if '=' not in i:
+						temp1+=i
+					else:
+						break
+				queue_cond.append(p[1])				
+				p[1]=temp1
+				#print(p[1],"hello")
+			temp2=''
+			if('=' in str(p[4])):
+				i=''
+				for i in str(p[4]):
+					if '=' not in i:
+						temp2+=i
+					else:
+						break
+				queue_cond.append(p[4])				
+				p[4]=temp2	
+			#print(p[1],p[3])
+		p[0] = str(p[1]) + ' ' + str(p[2]) + str(p[3]) + ' ' + str(p[4])	
 		
+
 def p_ASSGN(p):
 	'''ASSGN : LHS equals EXPR
 	'''
