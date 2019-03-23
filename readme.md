@@ -1,8 +1,8 @@
 # PyRuc-(Python based Ruby Compiler)
 
-We Implemented this as a part of the Complier Design Lab Course at PES University.
+We Implemented this as a part of the Complier Design Lab Course at PES University.The following Details are taken from PESU's Compiler Lab Mini Project Guidelines.
 
-#### This repo contains an implementation of a Compiler for Ruby written in Python by making use of the PLY (i.e Pythonic Version of Lex & Yacc Tools) package. A thing to note is that this is just a Front End Compiler i.e it doesn't implement the Machine Dependent Code optimization (MDCO) Phase out of the seven standard phases of Compilation. Also it is implemented to compile a few basic constructs of Ruby only & can be extended to include more.(The following Details are taken from PESU's Compiler Lab Mini Project Guidelines)
+This repo contains an implementation of a Compiler for Ruby written in Python by making use of the ***PLY (i.e Pythonic Version of Lex & Yacc Tools) package***. A thing to note is that this is just a Front End Compiler i.e it doesn't implement the Machine Dependent Code optimization (MDCO) Phase out of the seven standard phases of Compilation. Also it is implemented to compile a few basic constructs of Ruby only & can be extended to include more. 
 
 ## The Phases it Implements:
 
@@ -46,6 +46,6 @@ The remaining 2 phases that form the Backend of the Compiler are Machine Depende
 
 Link to the PLY Package: https://www.dabeaz.com/ply/ply.html
 
-To Understand more about the Compier's phases you can checkout the Compliers: Principles, Techniques & Tools Book (more famously known as the Dragon Book) by Aho et al.
+To Understand more about the Compier's phases you can checkout the ***Compliers: Principles, Techniques & Tools*** Book (more famously known as the Dragon Book) by Aho et al.
 Link- https://www.amazon.in/Compilers-Alfred-V-Aho/dp/9332542457?tag=googinhydr18418-21&tag=googinkenshoo-21&ascsubtag=_k_CjwKCAjwstfkBRBoEiwADTmnEHm7nMy2Ma_kjQqmHPMuiqdM2SX5V8V11nI4GnC7hVKgrKfsH4yOnxoCJzoQAvD_BwE_k_&gclid=CjwKCAjwstfkBRBoEiwADTmnEHm7nMy2Ma_kjQqmHPMuiqdM2SX5V8V11nI4GnC7hVKgrKfsH4yOnxoCJzoQAvD_BwE 
  
