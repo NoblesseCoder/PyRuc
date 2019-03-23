@@ -6,7 +6,7 @@ We Implemented this as a part of the Complier Design Lab Course at PES Universit
 
 ## The Phases it Implements:
 
-### 1.Lexical Analysis Phase & Symbol Table Construction:
+### 1. Lexical Analysis Phase & Symbol Table Construction:
 
 1.  Remove Comments.
 2.  Generate tokens.
@@ -14,12 +14,12 @@ We Implemented this as a part of the Complier Design Lab Course at PES Universit
 4.  Make an entry for the identifiers into the Symbol Table (if there exists an identifier with the same name in different scopes then construct Symbol Table per scope)
 5.  Symbol Table must contain entries for predefined routines like printf, scanf etc.
 
-### 2.Syntax Analysis Phase:
+### 2. Syntax Analysis Phase:
 
 6.  Write CFG for the entire program using appropriate Semantic rules if you are using PLY.
 7.  Else if you are implementing Parser by hand use Recursive Descent Parser (RDP) with Backtracking & Perform translation at required places in the code for each non-terminal.
 
-### 3.Semantic Analysis Phase (In this Project we look at basic Semantic Constructs only):
+### 3. Semantic Analysis Phase (In this Project we look at basic Semantic Constructs only):
 
 8.  Take care of the primitive types and array types.
 9.  Take care of coersions.
@@ -28,7 +28,7 @@ We Implemented this as a part of the Complier Design Lab Course at PES Universit
 12. Update type and storage information into the symbol table.
 13. Show Abstract Syntax tree (AST).
 
-### 4.Intermediate Code Generation:
+### 4. Intermediate Code Generation:
 
 14. Do a Three address code generation.
 
