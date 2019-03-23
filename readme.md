@@ -1,4 +1,4 @@
-# PyRuc-(Python based Ruby Compiler)
+# PyRuc (Python based Ruby Compiler)
 
 We Implemented this as a part of the Complier Design Lab Course at PES University.The following Details are taken from PESU's Compiler Lab Mini Project Guidelines.
 
